@@ -50,10 +50,6 @@
 <body>
   <div id="container">
     <div class="left-col">
-      <link rel="stylesheet" href="/js/dist/APlayer.min.css">
-      <div id="aplayer"></div>
-      <script type="text/javascript" src="/js/dist/APlayer.min.js"></script>
-      <script type="text/javascript" src="/js/dist/music.js"></script>
     <div class="overlay"></div>
 <div class="intrude-less">
     <header id="header" class="inner">
@@ -158,7 +154,7 @@
                 <section class="switch-part switch-part3">
                     <div id="js-friends">
                     
-                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://luuman.github.io/">name</a>
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://xhlife.github.io/">name</a>
                     
                     </div>
                 </section>
@@ -178,6 +174,14 @@
     </div>
 
     <div class="mid-col">
+      <div style="z-index:999;">
+        <link rel="stylesheet" href="/js/dist/APlayer.min.css">
+        <div id="aplayer">
+        </div>
+        <script type="text/javascript" src="/js/dist/APlayer.min.js"></script>
+        <script type="text/javascript" src="/js/dist/music.js"></script>
+      </div>
+
       <nav id="mobile-nav">
       <div class="overlay">
           <div class="slider-trigger"></div>
@@ -228,7 +232,8 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+
+      <div class="body-wrap" style="margin-top: 80px"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/test/index.html" class="article-date">
@@ -379,11 +384,11 @@
 <script>
     var gitment = new Gitment({
       id: window.location.pathname,
-      owner: 'luuman',
-      repo: 'luuman.github.io',
+      owner: 'xhlife',
+      repo: 'xhlife.github.io',
       oauth: {
-        client_id: '',
-        client_secret: '',
+        client_id: 'cfd073d1e4daa75321cb',
+        client_secret: '00d7e689b237fa905090da01794dc58090bf9095',
       },
     })
     gitment.render('gitments')
@@ -408,6 +413,8 @@
                 <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
             </div>
         </div>
+
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         
             <div class="visit">
                 
@@ -462,8 +469,8 @@
     })
 </script>
 
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
+<!--<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>-->
 
   <script language="javascript">
     $(function() {
@@ -492,7 +499,10 @@
 </script>
 
 
+
   </div>
+
+
   <!-- 页面点击小红心 -->
   <script type="text/javascript" src="/js/love.js"></script>
 
