@@ -15,7 +15,7 @@
             var startPositionLeft = Math.random() * documentWidth - 100,
                 startOpacity = 0.5 + Math.random(),
                 sizeFlake = options.minSize + Math.random() * options.maxSize,
-                endPositionTop = documentHeight - 300,
+                endPositionTop = documentHeight - 300,        
                 endPositionLeft = startPositionLeft - 400 + Math.random() * 500,
                 durationFall = documentHeight * 10 + Math.random() * 5000;
             $flake.clone().appendTo('body').css({
@@ -37,6 +37,6 @@ $(function(){
     $.fn.snow({
         minSize: 3, /* 定义雪花最小尺寸 */
         maxSize: 30,/* 定义雪花最大尺寸 */
-        newOn: 200  /* 定义密集程度，数字越小越密集 */
+        newOn: 500  /* 定义密集程度，数字越小越密集 */
     });
 });
