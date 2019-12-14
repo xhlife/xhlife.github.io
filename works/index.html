@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="cxhai-blog">
 <meta property="og:description" content="&#x2F;* 首先加上必要的3D属性，进入3D世界 *&#x2F;     &#x2F;* 最外面的容器 *&#x2F;     .container {         perspective: 1000px;     }      &#x2F;* piece总盒子 *&#x2F;     &#x2F;* animiation属性让3D动起来 *&#x2F;     .piece-box {         position: relative;">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-06T10:39:48.366Z">
+<meta property="og:updated_time" content="2019-12-14T06:40:50.733Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="cxhai-blog" type="application/atom+xml">
@@ -126,7 +126,7 @@
                             
                                 <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
                             
-                                <a class="fl github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                                <a class="fl github" target="_blank" href="https://github.com/xhlife" title="github">github</a>
                             
                                 <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
                             
@@ -145,7 +145,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        
+                        <a href="/tags/gitPage/" style="font-size: 10px;">gitPage</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a>
                     </div>
                 </section>
                 
@@ -154,7 +154,11 @@
                 <section class="switch-part switch-part3">
                     <div id="js-friends">
                     
-                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://xhlife.github.io/">name</a>
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://xhlife.github.io/">mygithub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.hezij.top/">hezij.top</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.lizheng0928.top/">lizheng0928.top</a>
                     
                     </div>
                 </section>
@@ -174,6 +178,8 @@
     </div>
 
     <div class="mid-col">
+
+      <!-- 音乐播放器 -->
       <div style="z-index:999;">
         <link rel="stylesheet" href="/js/dist/APlayer.min.css">
         <div id="aplayer">
@@ -215,7 +221,7 @@
                     
                         <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
                     
-                        <a class="github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                        <a class="github" target="_blank" href="https://github.com/xhlife" title="github">github</a>
                     
                         <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
                     
@@ -237,7 +243,7 @@
   
     <div class="article-meta">
       <a href="/works/index.html" class="article-date">
-      <time datetime="2019-12-07T13:22:24.091Z" itemprop="datePublished">2019-12-07</time>
+      <time datetime="2019-12-14T06:40:50.733Z" itemprop="datePublished">2019-12-14</time>
 </a>
     </div>
   
@@ -694,13 +700,43 @@
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
                         <span id="page-visit">本页阅读量: 
-                            <span id="busuanzi_value_page_pv"></span>
+                            <span id="busuanzi_value_page_pv">123</span>
                         </span>
                     </span>
                 
             </div>
         
     </div>
+    <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span>
+
+    <script>
+        var now = new Date();
+        function createtime(){
+            var grt = new Date("12/07/2019 15:38:00");
+
+            now.setTime(now.getTime() + 250);
+            /* 天数的计算 */
+            days = (now - grt) / 1000 / 60 / 60 / 24;
+            dnum = Math.floor(days);
+            /* 小时的计算 */
+            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+            hnum = Math.floor(hours);
+
+            /*在小于10的数字前面添加0*/
+            if(String(hnum).length ==1 ){hnum = "0" + hnum;}
+            /* 分钟的计算 */
+            minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+            mnum = Math.floor(minutes);
+            if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+            /* 秒的计算 */
+            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+            snum = Math.round(seconds);
+            if(String(snum).length ==1 ){snum = "0" + snum;}
+            document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        }
+        setInterval("createtime()",250)
+    </script>
 </footer>
 
     </div>
@@ -718,6 +754,16 @@
 
 
 
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?51cd99a33567e01fa8359b7ff9d25335";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
 
 
 <div class="scroll" id="scroll">
@@ -771,7 +817,8 @@
   <script type="text/javascript" src="/js/love.js"></script>
 
   <script type="text/javascript"
-          color="220,220,220" opacity='0.4' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+          color="220,220,220" opacity='0.6' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
   </script>
+  <script src="/js/snow.js"></script>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

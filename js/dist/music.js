@@ -1,5 +1,6 @@
 const ap = new APlayer({
     container: document.getElementById('aplayer'), //播放器容器元素
+    fixed: false,
     mini: false, //迷你模式
     autoplay: false, //自动播放
     theme: '#FADFA3', //主题色
@@ -70,6 +71,12 @@ const ap = new APlayer({
             artist: '凯瑟喵',
             url: '/audio/凯瑟喵 - 写给我第一个喜欢的女孩的歌.mp3',
             theme: '#c98888'
+        },
+        {
+            name: '半岛铁盒',
+            artist: '周杰伦',
+            url: '/audio/半岛铁盒+-+周杰伦.mp3',
+            theme: '#569999'
         }
     ]
 });

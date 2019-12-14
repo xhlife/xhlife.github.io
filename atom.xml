@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cxhai.top/"/>
-  <updated>2019-12-05T12:39:52.476Z</updated>
+  <updated>2019-12-14T13:04:35.462Z</updated>
   <id>https://cxhai.top/</id>
   
   <author>
@@ -17,47 +17,48 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="https://cxhai.top/2019/12/08/hello-world/"/>
-    <id>https://cxhai.top/2019/12/08/hello-world/</id>
-    <published>2019-12-07T17:22:29.977Z</published>
-    <updated>2019-12-05T12:39:52.476Z</updated>
+    <title>hexo+githubPage搭建个人博客</title>
+    <link href="https://cxhai.top/2019/12/14/artitle1/"/>
+    <id>https://cxhai.top/2019/12/14/artitle1/</id>
+    <published>2019-12-13T16:00:00.000Z</published>
+    <updated>2019-12-14T13:04:35.462Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo server</span></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo generate</span></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p> 搭建个人博客已经好几天了,还没有写过文章，这里主要转载别人的几篇文章，教程很详细，想要搭建个人博客网站的可以看看！</p><a id="more"></a><h5 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h5><p><a href="https://itrhx.blog.csdn.net/article/details/82121420" target="_blank" rel="noopener">使用 Github Pages 和 Hexo 搭建自己的独立博客【超级详细的小白教程】</a></p><h5 id="页面美化"><a href="#页面美化" class="headerlink" title="页面美化"></a>页面美化</h5><p><a href="https://itrhx.blog.csdn.net/article/details/85420403" target="_blank" rel="noopener">Hexo 博客优化之博客美化系列</a></p><h5 id="实用功能添加"><a href="#实用功能添加" class="headerlink" title="实用功能添加"></a>实用功能添加</h5><p><a href="https://itrhx.blog.csdn.net/article/details/85010191" target="_blank" rel="noopener">Hexo 博客优化之实用功能添加系列</a></p><h5 id="自定义页面"><a href="#自定义页面" class="headerlink" title="自定义页面"></a>自定义页面</h5><p>hexo的模板，新建一个页面默认都是嵌入到模板中的，如果想要自己写一个页面也是ok的。<br><a href="https://itrhx.blog.csdn.net/article/details/90320295" target="_blank" rel="noopener">Hexo 博客自定义一个不使用主题模板渲染的独立页面</a></p><h5 id="搭建图床"><a href="#搭建图床" class="headerlink" title="搭建图床"></a>搭建图床</h5><p>如果用于展示图片的话，建议搭建图床，这样在页面通过连接加载图片资源就可以了。<br><a href="https://blog.csdn.net/qq_36759224/article/details/98058240" target="_blank" rel="noopener">Github+jsDelivr+PicGo 打造稳定快速、高效免费图床</a></p><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>本人也是一路跟着教程，一步步的走下来，也遇过不少坑。</p><ul><li>坑一<br>右下角的动画人物，我第一次尝试着弄一个，成功之后就修改不了了，只能控制显示和隐藏，修改配置文件，甚至把动画人物插件删除都不管用，至今未解决。</li><li>坑二<br>域名添加了github地址后，不要急着使用域名访问网页，等个10分钟这样。我当时瞎搞了一两个小时，怎么都访问不了，睡醒就可以通过域名访问了。频繁的修改域名解释，可能会弄坏域名。</li><li>坑三<br>不蒜子以前的资源网站已过期，一些模板可能没有更新js资源地址，手动替代模板中的资源路径即可</li><li>坑四<br>gitment评论系统，不同的浏览器要登录一遍才可以评论，查了下说可以使用nigx代理解决。<br>如果在搭建的过程中遇到了问题，可以私信我，一起探讨。</li></ul>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-      
+      &lt;h3 id=&quot;说明&quot;&gt;&lt;a href=&quot;#说明&quot; class=&quot;headerlink&quot; title=&quot;说明&quot;&gt;&lt;/a&gt;说明&lt;/h3&gt;&lt;p&gt; 搭建个人博客已经好几天了,还没有写过文章，这里主要转载别人的几篇文章，教程很详细，想要搭建个人博客网站的可以看看！&lt;/p&gt;
     
     </summary>
     
     
+    
+      <category term="hexo" scheme="https://cxhai.top/tags/hexo/"/>
+    
+      <category term="gitPage" scheme="https://cxhai.top/tags/gitPage/"/>
     
   </entry>
   
   <entry>
-    <title>artitle</title>
-    <link href="https://cxhai.top/2019/12/05/artitle/"/>
-    <id>https://cxhai.top/2019/12/05/artitle/</id>
+    <title>Hello World</title>
+    <link href="https://cxhai.top/2019/12/05/hello-world/"/>
+    <id>https://cxhai.top/2019/12/05/hello-world/</id>
     <published>2019-12-05T14:47:35.000Z</published>
-    <updated>2019-12-05T14:48:57.537Z</updated>
+    <updated>2019-12-14T13:24:28.881Z</updated>
     
-    <content type="html"><![CDATA[<p>this is a test artitle</p>]]></content>
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><a id="more"></a><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo server</span></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo generate</span></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;this is a test artitle&lt;/p&gt;
-
-      
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
     
     </summary>
     
     
+    
+      <category term="hexo" scheme="https://cxhai.top/tags/hexo/"/>
+    
+      <category term="github" scheme="https://cxhai.top/tags/github/"/>
     
   </entry>
   

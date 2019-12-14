@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://cxhai.top/2019/12/05/hello-world/</loc>
+    
+    <lastmod>2019-12-14T13:24:28.881Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://cxhai.top/2019/12/14/artitle1/</loc>
+    
+    <lastmod>2019-12-14T13:04:35.462Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://cxhai.top/works/index.html</loc>
     
-    <lastmod>2019-12-06T10:39:48.366Z</lastmod>
+    <lastmod>2019-12-14T06:40:50.733Z</lastmod>
     
   </url>
   
@@ -12,27 +26,6 @@
     <loc>https://cxhai.top/about/index.html</loc>
     
     <lastmod>2019-12-06T09:03:56.421Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://cxhai.top/test/index.html</loc>
-    
-    <lastmod>2019-12-05T15:35:47.394Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://cxhai.top/2019/12/05/artitle/</loc>
-    
-    <lastmod>2019-12-05T14:48:57.537Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://cxhai.top/2019/12/08/hello-world/</loc>
-    
-    <lastmod>2019-12-05T12:39:52.476Z</lastmod>
     
   </url>
   
