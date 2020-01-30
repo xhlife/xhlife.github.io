@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img{
+            vertical-align: top;
+        }
+        #slider{
+            width: 750px;
+            height: 320px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 100px auto;
+            position: relative;
+            
+        }
+        #top{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        #top ul{
+            width: 4500px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #top ul li{
+            width: 750px;
+            height: 320px;
+            float: left;
+        }
+        #slider ol{
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+        #slider ol li{
+            width: 20px;
+            height: 20px;
+            background-color: darkgray;
+            display: inline-block;
+            margin-right: 3px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        #slider ol .current{
+            background-color: orangered;
+        }
+    </style>
+</head>
+<body>
+    <div id="slider">
+        <div id="top">
+            <ul id="ul">
+                <li><img src="imgs/pic01.jpg" alt=""></li>
+                <li><img src="imgs/pic02.jpg" alt=""></li>
+                <li><img src="imgs/pic03.jpg" alt=""></li>
+                <li><img src="imgs/pic04.jpg" alt=""></li>
+                <li><img src="imgs/pic05.jpg" alt=""></li>
+            </ul>
+        </div>
+        <ol id="ol"></ol>
+    </div>
+
+    <script src="../../封装/myFunc.js"></script>
+    <script>
+        window.onload = function(){
+            var lis = $('ul').children;
+
+            // 图片索引和圆点索引
+            var currentIndex = 0, indicatorIndex = 0
+
+            // 把第一张图片克隆放到最后, 克隆节点 ==== cloneNode(true)
+            $('ul').appendChild(lis[0].cloneNode(true))
+
+            // 动态创建右下角的圆点页码
+            for (let i = 0; i < lis.length-1; i++) {
+                 let li = document.createElement('li')
+                 $('ol').appendChild(li)
+            }
+
+            // 默认第一个圆点选中
+            $('ol').children[0].className = 'current'
+
+            // 鼠标进入圆点，切换到对应的图片
+            var olList = $('ol').children
+            //console.log(olList);
+            
+            for (let ii = 0; ii < olList.length; ii++) {
+               (function(){
+                    // 获取单独的li标签
+                   let li = olList[ii]
+
+                   // 监听鼠标进入圆点li
+                   li.onmouseover = function (e) {
+
+                        var e = e || window.event
+                    if (e.target.className) {
+                        // console.log('还是原来那张');                        
+                        return false
+                    }else{
+                        for (let j = 0; j < olList.length; j++) {
+                            olList[j].className = ''
+                        }
+                        this.className = 'current'
+
+                        // 让ul动起来，切换到对应图片
+                        constant($('ul'), -(750 * ii), 100)
+                        currentIndex=indicatorIndex = ii
+                    }  
+                   }
+               })(ii)
+            }
+            
+            //自动轮播
+
+            var timer = setInterval(autoPlay, 1000);
+            
+
+            // 清除和设置定时器
+            $('slider').onmouseover = function(){
+                clearInterval(timer)
+            }
+            $('slider').onmouseout =function(){
+                timer = setInterval(autoPlay, 1000);
+            }
+
+
+            function autoPlay() {
+                // ul 图片自动
+                currentIndex++;
+
+                if (currentIndex > lis.length - 1) {
+                    $('ul').style.left = 0
+                    currentIndex = 1
+                }
+                constant($('ul'), -currentIndex * 750, 100)
+
+                // 圆点自动
+                indicatorIndex++
+                if (indicatorIndex > olList.length - 1) {
+                    indicatorIndex = 0
+                }
+                for (let i = 0; i < olList.length; i++) {
+                    olList[i].className = ''
+                }
+                olList[indicatorIndex].className = 'current'
+            }
+
+        }
+
+    </script>
+</body>
+</html>

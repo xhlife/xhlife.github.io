@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: none ;
+        }
+        img{
+            vertical-align: top;
+        }
+        .small_img{
+            width: 350px;
+            height: 350px;
+        }
+        .list_img{
+            width: 50px;
+            height: 50px;
+        }
+        #box{
+            width: 350px;
+            height: 350px;
+            margin: 100px 0 0 100px;
+            position: relative;
+        }
+        #small_box{
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ccc;
+
+            position: relative;
+        }
+        #mask{
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255,255,0, .4);
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: move;
+            display: none;
+        }
+        #big_box{
+            width: 600px;
+            height: 600px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            position: absolute;
+            left: 360px;
+            top: 0;
+            display: none;
+        }
+         #big_box img{
+             position: absolute;
+             left: 0;
+             top: 0;
+         }
+
+
+        #list{
+            margin: 20px 0 0 100px;
+        }
+        #list img{
+            margin: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="small_box">
+            <img src="../background/bg-1.jpg" alt="" class="small_img">
+            <!-- 放大镜 -->
+            <span id="mask"></span>
+        </div>
+        <div id="big_box">
+            <img src="../background/bg-1.jpg" alt="" class="big_img">
+        </div>
+    </div>
+    <div id="list">
+        <img src="../background//bg-1.jpg" alt="" class="list_img">
+        <img src="../background//bg-10.jpg" alt="" class="list_img">
+        <img src="../background//bg-12.jpg" alt="" class="list_img">
+    </div>
+
+
+    <script>
+        window.onload = function(){
+            var box = document.getElementById('box')
+            var small_box = document.getElementById('small_box')
+            var big_box = document.getElementById('big_box')
+            var mask = small_box.children[1]
+            var big_img = big_box.children[0]
+            var list_img = document.getElementById('list').children
+
+            // 监听鼠标进入小盒子
+            small_box.onmouseover = function(){
+                // 把隐藏的放大镜和big_box显示
+                mask.style.display = 'block';
+                big_box.style.display = 'block'
+
+                // 监听鼠标的移动
+                small_box.onmousemove = function(event){
+                    var event = event || window.event
+
+                    // 求出鼠标的坐标
+                    var pointX = event.clientX - small_box.offsetParent.offsetLeft
+                    var pointY = event.clientY - box.offsetTop
+
+                    // 让鼠标在放大镜的中心
+                    var X = pointX - mask.offsetWidth * 0.5  // 减去盒子总宽度的一半
+                    var Y = pointY - mask.offsetHeight * 0.5  // 减去盒子总高度的一半
+
+                    // 检测放大镜的位置，不能超出box的范围
+                        // 检测 X 
+                    if (X < 0) {
+                        X =0
+                    }else if (X >= small_box.offsetWidth - mask.offsetWidth) {
+                        X = small_box.offsetWidth - mask.offsetWidth
+                    }
+                        // 检测 Y
+                     if (Y < 0) {
+                        Y = 0
+                    } else if (Y >= small_box.offsetHeight - mask.offsetHeight) {
+                        Y = small_box.offsetHeight - mask.offsetHeight
+                    } 
+
+                    // 让放大镜移动起来
+                    mask.style.left = X + 'px'
+                    mask.style.top = Y + 'px'
+
+                    // 让大图移动起来  放大镜往左的时候，图片应该往右，反之亦然
+                    /* 
+                        根据小图和大图的比例来移动大图
+                        samllX / bigX = smallBox.width / 大图的宽度
+                        ===》 bigX = smallX / (.......)
+                     */
+                     big_img.style.left = - X / (small_box.offsetWidth /big_img.offsetWidth) + 'px'
+
+                      big_img.style.top = - Y / (small_box.offsetHeight / big_img.offsetHeight) + 'px'
+                }
+            }
+            // 监听鼠标的离开
+            small_box.onpointerout = function(){
+                // 把放大镜和big_box隐藏
+                mask.style.display = 'none';
+                big_box.style.display = 'none'
+            }
+
+
+
+            // 遍历图片
+            for (let i = 0; i < list_img.length; i++) {
+                (function(index){
+                    var img = list_img[index]
+                    img.onmouseover = function(){ 
+                        small_box.children[0].src = this.src
+                        big_img.src = this.src
+                    }
+                })(i)
+                
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #box{
+        width: 260px;
+        height: 300px;
+        background-color: orangered;
+        margin: 100px auto;
+        padding: 20px;
+    }
+    #box_top{
+        font-size: 23px;
+        color: #ffff;
+        margin-bottom: 40px;
+    }
+    #box_bottom{
+        width: 90%;
+        height: 70%;
+        background-color: orange;
+        font-size: 100px;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+</style>
+<body>
+    <div id="box">
+        <div id="box_top"></div>
+        <div id="box_bottom"></div>
+    </div>
+
+    <script>
+        window.onload = function(){
+            // 创建日期对象
+            var date = new Date();
+            // var showDate = date.toUTCString();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;box_bottom
+            var day = date.getDate();  //日
+            var week = date.getDay();  // 星期
+            
+            // 获取节点
+            var showdiv = document.getElementById('box_top');
+            var showdiv2 = document.getElementById('box_bottom')
+
+            showdiv.innerText = year + '年' + month + '月' + day + '日' + ' 星期' + week;
+            showdiv2.innerText = day
+        }
+    </script>
+</body>
+</html>

@@ -15,7 +15,7 @@ const ap = new APlayer({
         {
             name: '听妈妈的话',
             artist: '周杰伦',
-            url: '/audio/听妈妈的话+-+周杰伦.mp3',
+            url: '/audio/听妈妈的话+-+周杰伦.mp3', 
             theme: '#ebd0c2'
         },
         {
@@ -27,6 +27,7 @@ const ap = new APlayer({
         {
             name: '等你下课',
             artist: '周杰伦',
+
             url: '/audio/周杰伦-等你下课(with+杨瑞代).mp3',
             theme: '#848484'
         },

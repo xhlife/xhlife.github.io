@@ -1,0 +1,70 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-01-06 13:50:39
+ * @LastEditTime : 2020-01-30 23:34:35
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \js基础学习\案例\导航吸顶\index.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    img{
+        vertical-align: top;
+        width: 100%;
+    }
+    section{
+        width: 70%;
+        margin: 0 auto;
+    }
+    .nav{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+</style>
+<body>
+    <header id="head">
+        <img src="images/top.png" alt="">
+    </header>
+    <nav id="nav">
+        <img src="images/top.png" alt="">
+    </nav>
+    <section>
+        <img src="images/body01.png" alt="">
+        <img src="images/body02.png" alt="">
+    </section>
+
+    <script src="../../封装/myFunc.js"></script>
+    <script>
+        window.onload = function(){
+            // 求出offsetTop
+            var nav_top_height = $('nav').offsetTop;
+
+            // 监听窗口的滚动
+            window.onscroll = function(){
+                var scrollTop = scroll().top
+                
+                if (scrollTop >= nav_top_height ) {
+                    $('nav').className = 'nav'
+                }else{
+                    $('nav').className = ''
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #box{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+</style>
+<body>
+    <button id="btn"> 开始动画</button>
+    <button id="end">结束动画</button>
+    <div id="box">
+
+    </div>
+
+    <script>
+        window.onload = function(){
+            var btn = document.getElementById('btn')
+            var box = document.getElementById('box')
+            var end = document.getElementById('end')
+            var timer= null, ML = 0
+
+            btn.onclick  = function(){
+                clearInterval(timer)
+
+                timer = setInterval(()=>{
+                    ML += 5
+                    box.style.marginLeft = ML + 'px'
+                },100)
+            }
+            end.onclick = function(){
+                clearInterval(timer)
+            }
+        }
+    </script>
+</body>
+</html>

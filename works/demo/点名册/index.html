@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        text-align: center;
+    }
+    #name{
+        font-size: 20px;
+        margin-top: 20px;
+    }
+</style>
+<body>
+    <button id="begin">开始点名</button>
+    <button id="end">结束点名</button>
+    <div id="name"></div>
+
+    <script>
+        window.onload = function(){
+            var begin = document.getElementById('begin');
+            var end = document.getElementById('end')
+            var name = document.getElementById('name')
+            var timer = null
+            // 定义名字数组
+            var nameArr = ['sgfa','sga','asdyhgrfth','shg','inlik','cvjnkg']
+            name.innerText = nameArr[0]
+
+            // 监听点击
+            begin.onclick = function(){
+                clearInterval(timer)
+
+                timer = setInterval(() => {
+                    // 随机获取名字
+                    var s_index = parseInt(Math.random() * nameArr.length)
+                    var s_name = nameArr[s_index]
+                    name.innerText = s_name
+                }, 20);
+            }
+            end.onclick = function(){
+                clearInterval(timer)
+            }
+        }
+        
+    </script>
+</body>
+</html>

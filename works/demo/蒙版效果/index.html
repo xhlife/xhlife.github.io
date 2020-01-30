@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            width: 100%;
+            height: 3000px;
+        }
+        #pannel{
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            opacity: 0.4;
+            /* IE透明度处理 */
+            filter: alpha(opacity=40);
+
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+        }
+        #login{
+            width: 300px;
+            height: 300px;
+            background-color: skyblue;
+            border-radius: 5px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-left: -150px;
+            margin-top: -150px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">立即登录</button>
+    <div id="pannel"></div>
+    <div id="login"></div>
+
+    <script>
+        
+        window.onload = function(){
+            var login = document.getElementById('login')
+            var pannel = document.getElementById('pannel')
+            // 监听按钮的点击
+            var btn = document.getElementById('btn')
+            
+
+            /* 
+            
+                下面监听了文档的点击，如果不阻止冒泡，那么文档事件将会触发
+            
+            */
+
+            btn.onclick = function(event){
+
+                if(event && event.stopPropagation){
+                    event.stopPropagation()
+                }else{
+                    window.event.cancelBubble = true
+                }
+                login.style.display = 'block'
+                pannel.style.display = 'block'
+
+                // 隐藏滚动条
+                document.body.style.overflow ='hidden'
+            }
+
+            // 点击文档
+            document.onclick = function(event){
+                var e = event||window.event
+                
+                var targetId = e.target ? e.target.id : e.srcElement.id
+
+                // 判断
+                if (targetId !== 'login') {
+                    login.style.display = 'none'
+                    pannel.style.display = 'none'
+
+                    // 显示滚动条
+                    document.body.style.overflow = 'auto'
+                }else{
+                    window.location.href = 'http://www.baidu.com'
+                }
+            }
+        }
+    </script>
+</body>
+</html>

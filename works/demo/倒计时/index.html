@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #time{
+        font-size: 40px;
+        color: red;
+        text-align: center;
+    }
+</style>
+<body>
+    <div id="time"></div>
+
+    <script>
+        window.onload = function(){
+            var time = document.getElementById('time')
+
+            // 自定义将来时间
+            var nextDate = new Date('2020/04/01 08:17:35')
+            console.log(nextDate);
+            
+            // 开启定时器
+            setInterval(() => {
+                // 现在时间
+                var currentDate = new Date();               
+                // 时间戳
+                var currentTime = currentDate.getTime();
+                var nextTime = nextDate.getTime();
+                
+                //剩下的时间戳
+                var allTime = nextTime - currentTime;
+
+                // 剩下时间的转换
+                    // 毫秒转成秒
+                    var seconds = parseInt(allTime / 1000)
+                    // 有多少天  总秒数/60 = 总分   总分/60 = 总小时  总小时/24 = 天
+                    var day = size(parseInt(seconds / 3600 / 24))
+                    // 减去天数剩多少时
+                    var hours = size(parseInt(seconds / 3600 % 24))
+                    // 剩余多少分钟
+                    var min = size(parseInt(seconds / 60 % 60))
+                    // 剩余多少秒
+                    var second = size(parseInt(seconds % 60))
+                    // 显示倒计时
+                    time.innerText = "距离放假还有"+ day + '天' + hours + '小时' + min + '分' + second + '秒'
+
+            }, 1000);
+
+            // 小于10 前面补零
+            function size(num){
+                return num >= 10 ? num : '0' + num
+            }
+        }
+    
+    </script>
+</body>
+</html>
