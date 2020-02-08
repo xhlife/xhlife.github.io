@@ -13,21 +13,8 @@ const ap = new APlayer({
     listMaxHeight: 90, //列表最大高度
     audio: [
         {
-            name: '听妈妈的话',
-            artist: '周杰伦',
-            url: '/audio/听妈妈的话+-+周杰伦.mp3', 
-            theme: '#ebd0c2'
-        },
-        {
-            name: '野孩子',
-            artist: '杨千嬅',
-            url: '/audio/野孩子.m4a',
-            theme: '#46718b'
-        },
-        {
             name: '等你下课',
             artist: '周杰伦',
-
             url: '/audio/周杰伦-等你下课(with+杨瑞代).mp3',
             theme: '#848484'
         },
@@ -38,34 +25,16 @@ const ap = new APlayer({
             theme: '#342'
         },
         {
-            name: '七里香',
-            artist: '周杰伦',
-            url: '/audio/周杰伦 - 七里香.mp3',
-            theme: '#289797'
-        },
-        {
             name: 'love story',
             artist: 'Taylor Swift',
             url: '/audio/love story.mp3',
             theme: '#492346'
         },
         {
-            name: '晴天',
-            artist: '周杰伦',
-            url: '/audio/周杰伦 - 晴天.mp3',
-            theme: '#569999'
-        },
-        {
             name: 'welcome to new York',
             artist: 'Taylor Swift',
             url: '/audio/Taylor Swift - Welcome To New York.mp3',
             theme: '#562323'
-        },
-        {
-            name: 'Intro',
-            artist: 'The xx',
-            url: '/audio/The xx - Intro.mp3',
-            theme: '#848484'
         },
         {
             name: '写给我第一个喜欢的女孩的歌',
