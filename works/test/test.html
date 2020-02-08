@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{message}}</p>
+        <test :age2="age1" @patch="msg"></test>
+    </div>
+
+    <div></div>
+    <script>
+        var Child = {
+                data:function(){
+                    return{
+                        count: '123'
+                    }
+                
+                },
+                props: ['age2'],
+                template: `<div>
+                            <h1>自定义组件!{{count}}{{age2}}</h1> <button type="button" name="button" @click="$emit('patch')">发送给父组件</button>
+                        </div>`
+            }
+        new Vue({
+            el: "#app",
+            data: {
+                message: 'abcd',
+                age1: 19
+            },
+            components:{
+                'test': Child
+            },
+            methods: {
+                msg:function(){
+                    console.log('yes');
+                    
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

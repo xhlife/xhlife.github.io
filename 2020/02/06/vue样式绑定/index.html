@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>javascript的this指向 | cxhai-blog</title>
+  <title>vue样式绑定 | cxhai-blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="说明记录一些关于this指向的知识。">
-<meta name="keywords" content="javascript">
+  <meta name="description" content="vue样式绑定。">
+<meta name="keywords" content="vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript的this指向">
-<meta property="og:url" content="https:&#x2F;&#x2F;cxhai.top&#x2F;2020&#x2F;01&#x2F;17&#x2F;artitle3&#x2F;index.html">
+<meta property="og:title" content="vue样式绑定">
+<meta property="og:url" content="https:&#x2F;&#x2F;cxhai.top&#x2F;2020&#x2F;02&#x2F;06&#x2F;vue%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A&#x2F;index.html">
 <meta property="og:site_name" content="cxhai-blog">
-<meta property="og:description" content="说明记录一些关于this指向的知识。">
+<meta property="og:description" content="vue样式绑定。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-01-18T14:34:07.260Z">
+<meta property="og:updated_time" content="2020-02-06T12:22:46.042Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="cxhai-blog" type="application/atom+xml">
@@ -240,11 +240,11 @@
     </div>
 </nav>
 
-      <div class="body-wrap" style="margin-top: 80px"><article id="post-artitle3" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap" style="margin-top: 80px"><article id="post-vue样式绑定" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2020/01/17/artitle3/" class="article-date">
-      <time datetime="2020-01-17T12:16:18.000Z" itemprop="datePublished">2020-01-17</time>
+      <a href="/2020/02/06/vue%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/" class="article-date">
+      <time datetime="2020-02-06T07:01:02.000Z" itemprop="datePublished">2020-02-06</time>
 </a>
     </div>
   
@@ -257,7 +257,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      javascript的this指向
+      vue样式绑定
     </h1>
   
 
@@ -267,7 +267,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">722字</span>
+        <span class="post-count">329字</span>
       </span>
     </span>
     &nbsp; | &nbsp;
@@ -275,7 +275,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">3分</span>
+        <span class="post-count">1分</span>
       </span>
     </span>
 </div>
@@ -287,7 +287,7 @@
 
         <!--
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
     </div>
 -->
         <div class="clearfix"></div>
@@ -297,38 +297,15 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>记录一些关于this指向的知识。</p>
+        <p>vue样式绑定。</p>
 <a id="more"></a>
-<h4 id="this的指向"><a href="#this的指向" class="headerlink" title="this的指向"></a>this的指向</h4><ol>
-<li><p>作为对象的方法调用， this指向该调用对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    a:<span class="number">1</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    func:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span> === obj)  <span class="comment">// true</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)       <span class="comment">// 1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">obj.func()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意：</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = obj.func   <span class="comment">// 把函数体拉到外面，</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">x()      <span class="comment">// 相当于作为普通函数，在window下直接调用，this指向window</span></span></pre></td></tr></table></figure></li>
-<li><p>作为普通函数调用（直接调用，不作为对象的属性被调用,this指向全局对象。浏览器中this为window,node中为global)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aa = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">aa()  <span class="comment">// 输出window和1</span></span></pre></td></tr></table></figure>
-<p>*注意，在strict模式下，直接调用this已经视为undefined。</p>
-</li>
-<li><p>构造函数调用（new操作）， this指向返回的这个对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> A = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.a = <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> A()  <span class="comment">// 1</span></span></pre></td></tr></table></figure>
-<p>*注意，如果构造函数显式的返回对象，返回对象（返回其他类型会被忽略），那么构造函数中使用this初始化的变量没有意义。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显式返回对象</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> A = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.a = <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        a: <span class="number">3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> A()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a.a) <span class="comment">// 3</span></span></pre></td></tr></table></figure>
+<p>在vue中我们可以使用v-bind来设置样式属性。<br>而v-bind在处理样式的时候可以采用三种语法。</p>
+<h5 id="一、对象语法"><a href="#一、对象语法" class="headerlink" title="一、对象语法"></a>一、对象语法</h5><p>适合较多的class名或者动态的class</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="css">    <span class="selector-class">.test</span>&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        width: 100px;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        height: 100px;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        background: green;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"&#123;'test':a&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"obj"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">    <span class="keyword">new</span> Vue(&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">        el:<span class="string">'#app'</span>,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        data:&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">            a:<span class="literal">true</span>, <span class="comment">/* 当a为true时，添加类名test */</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">            <span class="comment">// 直接传入对象写法</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">            obj: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">                test:<span class="literal">true</span>  <span class="comment">// ture时添加test类名</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure>
+<h5 id="二、数组语法"><a href="#二、数组语法" class="headerlink" title="二、数组语法"></a>二、数组语法</h5><p>适合较少的class名</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="css">    <span class="selector-class">.test-a</span>&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        width: 100px;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        height: 100px;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        background: green;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="css">    <span class="selector-class">.test-b</span><span class="selector-pseudo">:hover</span>&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        background: red;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"[a,b]"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">    <span class="keyword">new</span> Vue(&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">        el:<span class="string">'#app'</span>,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        data:&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">            a:<span class="string">"test-a"</span>,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">            b:<span class="string">"test-b"</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure>
 
-<p>这里简单说一下new的过程<br> 1.创建一个空的Object对象，var obj = new Object()<br> 2.将构造函数中的this指向刚创建的obj对象<br> 3.将创建的obj的<strong>proto</strong>指向构造函数的prototype。<br> 4.执行构造函数中的代码</p>
-</li>
-<li><p>call(),apply(),bind()调用</p>
-</li>
-</ol>
-<ul>
-<li>call()和apply()的作用基本相同的，都是更改对象的内部指针，即改变对象的this指向。它们主要的区别是传入参数形式不同。当函数需要传递多个变量时，call()接受一系列的单独变量，apply()接受一个数组(array)作为参数。<br>call(obj,arg1,arg2…)        apply(obj,[arg1,arg2…])</li>
-</ul>
-<p>*注意：当第一个参数存入undefined、null时，默认指向window</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    name:<span class="string">'obj1'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    getName:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj2 = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    name: <span class="string">'obj2'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(obj1.getName())   <span class="comment">// obj1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(obj1.getName.call(obj2))  <span class="comment">// obj2</span></span></pre></td></tr></table></figure>
-<ul>
-<li>bind()的使用和call()差不多，区别是bind()返回的是函数以及bind()接受的参数列表的使用<br>bind()方法不会立即执行，而是返回一个改变上下文this后的函数。而原函数中的this并没有改变。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    name: <span class="string">'obj'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printName</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = printName.bind(obj)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(func)  <span class="comment">// function()&#123;...&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">func()  <span class="comment">// obj</span></span></pre></td></tr></table></figure></li>
-</ul>
-<ol start="5">
-<li>ES6箭头函数this指向<br>默认指向在定义它时,它所处的对象,而不是执行时的对象, 定义它的时候,可能环境是window（即继承父级的this）;<br>即使是call，apply，bind等方法也不能改变箭头函数this的指向。<br>箭头函数实例：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    num: <span class="number">10</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    func: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>) ;  <span class="comment">// obj</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>)  <span class="comment">// obj</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    func1: <span class="function"><span class="params">()</span> =&gt;</span> &#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>)&#125; <span class="comment">// window</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-</li>
-</ol>
-
+<h4 id="三、内联方式"><a href="#三、内联方式" class="headerlink" title="三、内联方式"></a>三、内联方式</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">"&#123;width:w, height:h, background-color：bgc&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 或者直接传入对象 --&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">:style</span>=<span class="string">"obj"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">data:&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    w:"200px",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">	h:"200px",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    c:"red",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    obj:&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        width:"200px",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        height:"200px",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        background-color:"red",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
       
       
         <div class="page-reward">
@@ -383,13 +360,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2020/01/17/artitle3/">javascript的this指向</a></p>
+        <p><span>本文标题:</span><a href="/2020/02/06/vue%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/">vue样式绑定</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 cxh 的个人博客">cxh</a></p>
-        <p><span>发布时间:</span>2020年01月17日 - 20时16分</p>
-        <p><span>最后更新:</span>2020年01月18日 - 22时34分</p>
+        <p><span>发布时间:</span>2020年02月06日 - 15时01分</p>
+        <p><span>最后更新:</span>2020年02月06日 - 20时22分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2020/01/17/artitle3/" title="javascript的this指向">https://cxhai.top/2020/01/17/artitle3/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://cxhai.top/2020/01/17/artitle3/　　作者: cxh" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2020/02/06/vue%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/" title="vue样式绑定">https://cxhai.top/2020/02/06/vue%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://cxhai.top/2020/02/06/vue%E6%A0%B7%E5%BC%8F%E7%BB%91%E5%AE%9A/　　作者: cxh" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -402,18 +379,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2020/01/18/artitle4/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/02/06/vue%E7%BB%84%E4%BB%B6/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          call()和apply的用途
+          vue组件通信
         
       </div>
     </a>
   
   
-    <a href="/2020/01/15/artitle2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">prototype和__proto__</div>
+    <a href="/2020/02/05/vue%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E5%92%8C%E4%BE%A6%E5%90%AC%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue计算属性和侦听器</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -424,7 +401,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#this的指向"><span class="toc-number">1.1.</span> <span class="toc-text">this的指向</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、对象语法"><span class="toc-number">1.</span> <span class="toc-text">一、对象语法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、数组语法"><span class="toc-number">2.</span> <span class="toc-text">二、数组语法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、内联方式"><span class="toc-number"></span> <span class="toc-text">三、内联方式</span></a>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -491,7 +468,7 @@
 <script>
     var gitment = new Gitment({
       // id: window.location.pathname,
-      id: 'javascript的this指向',
+      id: 'vue样式绑定',
       owner: 'xhlife',
       repo: 'xhlife.github.io',
       oauth: {
@@ -507,13 +484,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2020/01/18/artitle4/" title="上一篇: call()和apply的用途">
+            <a href="/2020/02/06/vue%E7%BB%84%E4%BB%B6/" title="上一篇: vue组件通信">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2020/01/15/artitle2/" title="下一篇: prototype和__proto__">
+            <a href="/2020/02/05/vue%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E5%92%8C%E4%BE%A6%E5%90%AC%E5%99%A8/" title="下一篇: vue计算属性和侦听器">
                 <i class="fa fa-angle-right"></i>
             </a>
         
