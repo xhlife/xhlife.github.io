@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vue组件间通信的方式总结 | xhai</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="组件件通信是组件化后组件与组件沟通的桥梁">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue组件间通信的方式总结">
+<meta property="og:url" content="https://cxid.gitee.io/2021/02/08/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/index.html">
+<meta property="og:site_name" content="xhai">
+<meta property="og:description" content="组件件通信是组件化后组件与组件沟通的桥梁">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-02-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-19T15:10:33.073Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="xhai" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+<!-- 回传giteement评论页网址 -->
+<!-- <script src="https://giteement.oss-cn-beijing.aliyuncs.com/oauthcallback.browser.js"></script> -->
+<script src="/js/outh.js"></script>
+  <script>
+    Oauthcallback(); 
+  </script>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">xh</a></h1>
+        </hgroup>
+
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/clock">留言打卡</a></li>
+                        
+                            <li><a href="/tags">文章标签</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/xhlife" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Element-ui/" style="font-size: 10px;">Element-ui</a> <a href="/tags/Gzip/" style="font-size: 10px;">Gzip</a> <a href="/tags/HTTP/" style="font-size: 14.29px;">HTTP</a> <a href="/tags/IE/" style="font-size: 10px;">IE</a> <a href="/tags/IOS/" style="font-size: 11.43px;">IOS</a> <a href="/tags/JSCore/" style="font-size: 10px;">JSCore</a> <a href="/tags/Javascript/" style="font-size: 17.14px;">Javascript</a> <a href="/tags/Node-js/" style="font-size: 12.86px;">Node.js</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 17.14px;">Vue</a> <a href="/tags/WebCore/" style="font-size: 10px;">WebCore</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/canvas/" style="font-size: 11.43px;">canvas</a> <a href="/tags/cli/" style="font-size: 10px;">cli</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/highlight%E7%BB%84%E4%BB%B6/" style="font-size: 10px;">highlight组件</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/iframe/" style="font-size: 10px;">iframe</a> <a href="/tags/javascript/" style="font-size: 14.29px;">javascript</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/ts/" style="font-size: 18.57px;">ts</a> <a href="/tags/vite/" style="font-size: 10px;">vite</a> <a href="/tags/vue/" style="font-size: 12.86px;">vue</a> <a href="/tags/vue-cli/" style="font-size: 10px;">vue-cli</a> <a href="/tags/vue-router/" style="font-size: 11.43px;">vue-router</a> <a href="/tags/vue3/" style="font-size: 17.14px;">vue3</a> <a href="/tags/webkit/" style="font-size: 10px;">webkit</a> <a href="/tags/webpack/" style="font-size: 14.29px;">webpack</a> <a href="/tags/%E4%BC%A0%E8%BE%93%E5%B1%82%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">传输层协议</a> <a href="/tags/%E5%85%BC%E5%AE%B9%E6%80%A7%E5%A4%84%E7%90%86/" style="font-size: 10px;">兼容性处理</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%8F%92%E4%BB%B6/" style="font-size: 10px;">富文本插件</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">服务器</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 15.71px;">浏览器</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">爱运动、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">xh</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">xh</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/clock">留言打卡</a></li>
+                
+                    <li><a href="/tags">文章标签</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/xhlife" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="页面布局（配合主题文档使用）-vue组件通信方式" class="article article-type-页面布局（配合主题文档使用）" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2021/02/08/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/" class="article-date">
+      <time datetime="2021-02-07T16:00:00.000Z" itemprop="datePublished">2021-02-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue组件间通信的方式总结
+    </h1>
+  
+
+        
+          <div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-keyboard-o"></i>
+      <span class="post-meta-item-text">  字数统计: </span>
+      <span class="post-count">1.3k字</span>
+    </span>
+  </span>
+  &nbsp; | &nbsp;
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-hourglass-half"></i>
+      <span class="post-meta-item-text">  阅读时长: </span>
+      <span class="post-count">6分</span>
+    </span>
+  </span>
+</div>
+
+          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="一-Props传递数据-父传子"><a href="#一-Props传递数据-父传子" class="headerlink" title="一.Props传递数据(父传子 )"></a>一.Props传递数据(父传子 )</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">components</span><br><span class="line">   ├── Grandson1.vue // 孙子1</span><br><span class="line">   ├── Grandson2.vue // 孙子2</span><br><span class="line">   ├── Parent.vue   // 父亲</span><br><span class="line">   ├── Son1.vue     // 儿子1 </span><br><span class="line">   └── Son2.vue     // 儿子2</span><br></pre></td></tr></table></figure>
+<p>在父组件中使用儿子组件</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  父组件:&#123;&#123;mny&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">Son1</span> <span class="attr">:mny</span>=<span class="string">&quot;mny&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">Son1</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> <span class="title class_">Son1</span> <span class="keyword">from</span> <span class="string">&quot;./Son1&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript"> <span class="attr">components</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="title class_">Son1</span></span></span><br><span class="line"><span class="language-javascript"> &#125;,</span></span><br><span class="line"><span class="language-javascript"> <span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">return</span> &#123; <span class="attr">mny</span>: <span class="number">100</span> &#125;;</span></span><br><span class="line"><span class="language-javascript"> &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>子组件接受父组件的属性<br><code>注意</code>: 如果不通过props接收，那么数据将会绑定到html标签体上</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span>&gt;</span>子组件1: &#123;&#123;mny&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript"> <span class="attr">props</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">mny</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">   <span class="attr">type</span>: <span class="title class_">Number</span></span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"> &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="二-emit使用（子传父，通过事件触发）"><a href="#二-emit使用（子传父，通过事件触发）" class="headerlink" title="二.$emit使用（子传父，通过事件触发）"></a>二.$emit使用（子传父，通过事件触发）</h2><p>子组件触发父组件方法,通过回调的方式将修改的内容传递给父组件</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  父组件:&#123;&#123;mny&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">Son1</span> <span class="attr">:mny</span>=<span class="string">&quot;mny&quot;</span> @<span class="attr">update</span>=<span class="string">&quot;change&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">Son1</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> <span class="title class_">Son1</span> <span class="keyword">from</span> <span class="string">&quot;./Son1&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript"> <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">change</span>(<span class="params">mny</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">   <span class="variable language_">this</span>.<span class="property">mny</span> = mny;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"> &#125;,</span></span><br><span class="line"><span class="language-javascript"> <span class="attr">components</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="title class_">Son1</span></span></span><br><span class="line"><span class="language-javascript"> &#125;,</span></span><br><span class="line"><span class="language-javascript"> <span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">return</span> &#123; <span class="attr">mny</span>: <span class="number">100</span> &#125;;</span></span><br><span class="line"><span class="language-javascript"> &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>子组件触发绑定自己身上的方法</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  子组件1: &#123;&#123;mny&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;update&#x27;,200)&quot;</span>&gt;</span>更改<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript"> <span class="attr">props</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">mny</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">   <span class="attr">type</span>: <span class="title class_">Number</span></span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"> &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里的主要目的就是同步父子组件的数据,-&gt;语法糖的写法</p>
+</blockquote>
+<h3 id="sync"><a href="#sync" class="headerlink" title=".sync"></a>.sync</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Son1</span> <span class="attr">:mny.sync</span>=<span class="string">&quot;mny&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">Son1</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 触发的事件名 update:(绑定.sync属性的名字) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;update:mny&#x27;,200)&quot;</span>&gt;</span>更改<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Son1</span> <span class="attr">v-model</span>=<span class="string">&quot;mny&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">Son1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- 触发的只能是 input 事件   因为v-model 本质实现就是采用input 相关事件 --&gt;</span></span><br><span class="line">  子组件1: &#123;&#123;value&#125;&#125; </span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;input&#x27;,200)&quot;</span>&gt;</span>更改<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript"> <span class="attr">props</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">value</span>: &#123; <span class="comment">// 接收到的属性名只能叫value</span></span></span><br><span class="line"><span class="language-javascript">   <span class="attr">type</span>: <span class="title class_">Number</span></span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"> &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="三-parent、-children"><a href="#三-parent、-children" class="headerlink" title="三.$parent、$children"></a>三.$parent、$children</h2><p>继续将属性传递</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Grandson1</span> <span class="attr">:value</span>=<span class="string">&quot;value&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">Grandson1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  孙子:&#123;&#123;value&#125;&#125;</span><br><span class="line">  <span class="comment">&lt;!-- 调用父组件的input事件 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;$parent.$emit(&#x27;input&#x27;,200)&quot;</span>&gt;</span>更改<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript"> <span class="attr">props</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">value</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">   <span class="attr">type</span>: <span class="title class_">Number</span></span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"> &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果层级很深那么就会出现$parent.$parent…..我们可以封装一个$dispatch方法向上进行派发</p>
+</blockquote>
+<h3 id="dispatch"><a href="#dispatch" class="headerlink" title="$dispatch"></a>$dispatch</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">$dispatch</span> = <span class="keyword">function</span> <span class="title function_">$dispatch</span>(<span class="params">eventName, data</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> parent = <span class="variable language_">this</span>.<span class="property">$parent</span>;</span><br><span class="line">  <span class="keyword">while</span> (parent) &#123;</span><br><span class="line">    parent.$emit(eventName, data);</span><br><span class="line">    parent = parent.<span class="property">$parent</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>既然能向上派发那同样可以向下进行派发</p>
+<h3 id="broadcast"><a href="#broadcast" class="headerlink" title="$broadcast"></a>$broadcast</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">$broadcast</span> = <span class="keyword">function</span> <span class="title function_">$broadcast</span>(<span class="params">eventName, data</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> broadcast = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">$children</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">child</span>) =&gt;</span> &#123;</span><br><span class="line">      child.$emit(eventName, data);</span><br><span class="line">      <span class="keyword">if</span> (child.<span class="property">$children</span>) &#123;</span><br><span class="line">        $broadcast.<span class="title function_">call</span>(child, eventName, data);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  broadcast.<span class="title function_">call</span>(<span class="variable language_">this</span>, eventName, data);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四-attrs、-listeners"><a href="#四-attrs、-listeners" class="headerlink" title="四.$attrs、$listeners"></a>四.$attrs、$listeners</h2><h3 id="attrs-（向下传递属性）"><a href="#attrs-（向下传递属性）" class="headerlink" title="$attrs （向下传递属性）"></a>$attrs （向下传递属性）</h3><p>如果传入属性特别多，那么props写出来会特别庞大，<br>通过$attrs 可以获取那些没有写在props中接受的属性</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Son2</span> <span class="attr">name</span>=<span class="string">&quot;test&quot;</span> <span class="attr">age</span>=<span class="string">&quot;10&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">Son2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 可以在son2组件中使用$attrs属性,可以将属性继续向下传递 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Son2.vue --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  儿子2: &#123;&#123;$attrs.name&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">Grandson2</span> <span class="attr">v-bind</span>=<span class="string">&quot;$attrs&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">Grandson2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Grandson2.vue --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span>&gt;</span>孙子:&#123;&#123;$attrs.name&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="listeners（向下传递方法）"><a href="#listeners（向下传递方法）" class="headerlink" title="$listeners（向下传递方法）"></a>$listeners（向下传递方法）</h3><p>批量向下传入方法</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Son2</span> <span class="attr">name</span>=<span class="string">&quot;test&quot;</span> <span class="attr">age</span>=<span class="string">&quot;10&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;()=&gt;&#123;this.mny = 500&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">Son2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 可以在son2组件中使用listeners属性,可以将方法继续向下传递 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Son2.vue --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Grandson2</span> <span class="attr">v-bind</span>=<span class="string">&quot;$attrs&quot;</span> <span class="attr">v-on</span>=<span class="string">&quot;$listeners&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">Grandson2</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Grandson2.vue 中的按钮,用于触发listeners --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;$listeners.click()&quot;</span>&gt;</span>更改<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="五-Provide-amp-Inject"><a href="#五-Provide-amp-Inject" class="headerlink" title="五.Provide &amp; Inject"></a>五.Provide &amp; Inject</h2><h3 id="Provide"><a href="#Provide" class="headerlink" title="Provide"></a>Provide</h3><p>在父级中注入数据</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">provide</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">parentMsg</span>: <span class="string">&quot;父亲&quot;</span> &#125;;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h3 id="Inject"><a href="#Inject" class="headerlink" title="Inject"></a>Inject</h3><p>在<code>任意子组件</code>中可以注入父级数据</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">inject</span>: [<span class="string">&quot;parentMsg&quot;</span>] <span class="comment">// 会将数据挂载在当前实例上</span></span><br><span class="line"><span class="comment">// 如果不提供(provide),可以使用默认值</span></span><br><span class="line"><span class="attr">inject</span>: &#123;</span><br><span class="line">  <span class="attr">parentMsg</span>: &#123;</span><br><span class="line">    <span class="attr">default</span>: <span class="string">&#x27;父亲&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="六-Ref使用"><a href="#六-Ref使用" class="headerlink" title="六.Ref使用"></a>六.Ref使用</h2><p>ref 放到dom中获取的是dom, 放到组件上获取的是组件实例<br>获取组件实例<br>son2.vue</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Grandson2</span> <span class="attr">v-bind</span>=<span class="string">&quot;$attrs&quot;</span> <span class="attr">v-on</span>=<span class="string">&quot;$listeners&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;grand2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">Grandson2</span>&gt;</span></span><br><span class="line">mounted() &#123; // 获取组件定义的属性</span><br><span class="line">  console.log(this.$refs.grand2.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="七-EventBus"><a href="#七-EventBus" class="headerlink" title="七.EventBus"></a>七.EventBus</h2><p>用于跨组件通知(不复杂的项目可以使用这种方式)</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">$bus</span> = <span class="keyword">new</span> <span class="title class_">Vue</span>();</span><br></pre></td></tr></table></figure>
+
+<p>Son2组件和Grandson1相互通信</p>
+<p>Son2</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">mounted</span>(<span class="params"></span>) &#123;</span><br><span class="line"> <span class="variable language_">this</span>.<span class="property">$bus</span>.$on(<span class="string">&quot;my&quot;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line"> &#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>Grandson1</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">mounted</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 需要采用nextTick()</span></span><br><span class="line">  <span class="comment">// 因为子组件先父组件挂载</span></span><br><span class="line">  <span class="comment">// 所以 子组件mouted()，触发事件时，父组件都没挂载事件，那就根本不可能会触发，因此，在下一轮dom更新时触发 </span></span><br><span class="line">  <span class="variable language_">this</span>.$nextTick(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">   <span class="variable language_">this</span>.<span class="property">$bus</span>.$emit(<span class="string">&quot;my&quot;</span>, <span class="string">&quot;我是Grandson1&quot;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="八-Vuex通信"><a href="#八-Vuex通信" class="headerlink" title="八.Vuex通信"></a>八.Vuex通信</h2><p>状态管理</p>
+<h2 id="九-非vue本身技术"><a href="#九-非vue本身技术" class="headerlink" title="九. 非vue本身技术"></a>九. 非vue本身技术</h2><p>浏览器存储， localStorage,sessionStorage,cookie，indexDB等</p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2021/02/08/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/">Vue组件间通信的方式总结</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 xh 的个人博客">xh</a></p>
+        <p><span>发布时间:</span>2021年02月08日 - 00时00分</p>
+        <p><span>最后更新:</span>2022年10月19日 - 23时10分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2021/02/08/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/" title="Vue组件间通信的方式总结">https://cxid.gitee.io/2021/02/08/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://cxid.gitee.io/2021/02/08/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/　　作者: xh" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2021/03/04/vue%E7%9A%84mixin%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Vue的mixin合并策略
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/01/js%E5%A6%82%E4%BD%95%E8%A2%AB%E8%A7%A3%E6%9E%90%E6%89%A7%E8%A1%8C/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">js如何被解析执行</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-Props%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE-%E7%88%B6%E4%BC%A0%E5%AD%90"><span class="toc-number">1.</span> <span class="toc-text">一.Props传递数据(父传子 )</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-emit%E4%BD%BF%E7%94%A8%EF%BC%88%E5%AD%90%E4%BC%A0%E7%88%B6%EF%BC%8C%E9%80%9A%E8%BF%87%E4%BA%8B%E4%BB%B6%E8%A7%A6%E5%8F%91%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">二.$emit使用（子传父，通过事件触发）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sync"><span class="toc-number">2.1.</span> <span class="toc-text">.sync</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-model"><span class="toc-number">2.2.</span> <span class="toc-text">v-model</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-parent%E3%80%81-children"><span class="toc-number">3.</span> <span class="toc-text">三.$parent、$children</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dispatch"><span class="toc-number">3.1.</span> <span class="toc-text">$dispatch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#broadcast"><span class="toc-number">3.2.</span> <span class="toc-text">$broadcast</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-attrs%E3%80%81-listeners"><span class="toc-number">4.</span> <span class="toc-text">四.$attrs、$listeners</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#attrs-%EF%BC%88%E5%90%91%E4%B8%8B%E4%BC%A0%E9%80%92%E5%B1%9E%E6%80%A7%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">$attrs （向下传递属性）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#listeners%EF%BC%88%E5%90%91%E4%B8%8B%E4%BC%A0%E9%80%92%E6%96%B9%E6%B3%95%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">$listeners（向下传递方法）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94-Provide-amp-Inject"><span class="toc-number">5.</span> <span class="toc-text">五.Provide &amp; Inject</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Provide"><span class="toc-number">5.1.</span> <span class="toc-text">Provide</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inject"><span class="toc-number">5.2.</span> <span class="toc-text">Inject</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD-Ref%E4%BD%BF%E7%94%A8"><span class="toc-number">6.</span> <span class="toc-text">六.Ref使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83-EventBus"><span class="toc-number">7.</span> <span class="toc-text">七.EventBus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB-Vuex%E9%80%9A%E4%BF%A1"><span class="toc-number">8.</span> <span class="toc-text">八.Vuex通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D-%E9%9D%9Evue%E6%9C%AC%E8%BA%AB%E6%8A%80%E6%9C%AF"><span class="toc-number">9.</span> <span class="toc-text">九. 非vue本身技术</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<!-- 
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+ -->
+
+<script src="/js/require.js"></script>
+
+
+<script src="https://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <!-- giteement评论系统 -->
+
+<div id="giteementDiv"></div>
+<link rel="stylesheet" href="https://giteement.oss-cn-beijing.aliyuncs.com/default.css">
+<script src="https://giteement.oss-cn-beijing.aliyuncs.com/giteement.browser.js"></script>
+
+<script type="text/javascript">
+  var giteement = new Giteement({
+    id: window.location.pathname,
+    owner: 'cxid',
+    repo: 'comment',
+    backcall_uri: 'https://cxid.gitee.io',
+    oauth_uri: 'https://cors-anywhere.herokuapp.com/https://gitee.com/oauth/token',
+    oauth: {
+      client_id: '8ee4f1dfd68916ea866a96bfc7d86e4d01b32e5bcd18c8d0cf06318584689723',
+      client_secret: '35dd05443654ee53bee1c899eb9dad9dd3ee3f6674beb0b9025e09fc239c877e'
+    },
+  });
+  giteement.render('giteementDiv');
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2021/03/04/vue%E7%9A%84mixin%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" title="上一篇: Vue的mixin合并策略">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2021/01/01/js%E5%A6%82%E4%BD%95%E8%A2%AB%E8%A7%A3%E6%9E%90%E6%89%A7%E8%A1%8C/" title="下一篇: js如何被解析执行">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/01/07/docker%E9%83%A8%E7%BD%B2vue%E9%A1%B9%E7%9B%AE/">docker部署前端项目(以vue为例)</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/12/23/vue-router%E7%9A%84next()/">vue-router的next()</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/12/10/vue3-hightlight%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1/">vue3-highlight组件实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/11/23/vue3-%E4%BD%BF%E7%94%A8watch%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%B8%9C%E8%A5%BF-%E8%B8%A9%E5%9D%91watch%E7%9B%91%E5%90%AC%E4%B8%8D%E5%88%B0/">vue3-watch踩坑-无法监听数据变化</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/11/02/vite%E6%89%93%E5%8C%85%E4%B9%8BcssCodeSplit/">vite打包组件库时，设置cssCodeSplit不生效</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/25/vue3%E6%94%AF%E6%8C%81jsx%E8%AF%AD%E6%B3%95/">vue3支持jsx语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/09/10/%E7%BC%96%E7%A8%8B-%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E8%BD%AC%E4%B8%AD%E6%96%87/">阿拉伯数字转中文</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/09/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/">数据结构-链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%98%9F%E5%88%97/">数据结构-队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88/">数据结构-栈</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/10/%E9%95%BF%E5%88%97%E8%A1%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/">长列表性能优化方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/22/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/">浏览器渲染原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/06/25/html-iframe%E7%A6%81%E6%AD%A2%E4%B8%8B%E8%BD%BDpdf/">iframe预览pdf，禁止下载</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/06/01/vue-cli4.x%E5%A4%84%E7%90%86svg%E4%BB%A5%E5%8F%8A%E5%8E%BB%E9%99%A4%E6%B3%A8%E9%87%8A/">Vue-cli4.x的一些打包优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/05/24/node-SSE%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">node-SSE简单实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/05/20/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%8F%92%E4%BB%B6%E8%B0%83%E7%A0%94%E8%AE%B0%E5%BD%95/">富文本插件调研记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/30/js-%E4%BB%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6%E4%BD%9C%E4%B8%BA%E5%AD%97%E8%8A%82%E9%95%BF%E5%BA%A6%E5%B8%A6%E6%9D%A5bug/">js-以字符串长度作为字节长度带来bug</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/08/H5%E8%BD%AF%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E5%A4%84%E7%90%86/">H5软键盘弹起处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/27/IOS%E4%B8%8Baudio%E7%9A%84%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%B1%9E%E6%80%A7%E6%98%AF%E6%97%A0%E6%95%88%E7%9A%84/">IOS的audio标签不允许自动播放</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/25/IOS%E5%AF%B9%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E7%9A%84bug/">IOS对时间字符串处理的bug</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/20/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A81/">前端安全-1</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/10/TypeScript%E7%B1%BB%E5%9E%8B%E7%BC%96%E5%86%99%E6%8F%90%E5%8D%87/">TypeScript类型编写提升</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/12/canvas%E9%9D%9E%E9%9B%B6%E7%8E%AF%E7%BB%95%E8%A7%84%E5%88%99/">canvas的非零环绕规则</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/10/canvas%E8%B7%AF%E5%BE%84%E4%BA%8E%E5%AD%90%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">canvas路径与子路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/09/TypeScript%E9%85%8D%E7%BD%AE%E8%B7%AF%E5%BE%84%E9%97%B4%E5%86%99/">TypeScript配置路径简称</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/28/TypeScript-Event%E7%9A%84%E7%B1%BB%E5%9E%8B%E7%AE%80%E5%8D%95%E8%AE%B0%E5%BD%95/">TypeScript-Event类型的简单记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/20/TypeScript%E8%8E%B7%E5%8F%96%E6%9E%9A%E4%B8%BE%E7%9A%84%E7%B1%BB%E5%9E%8B/">TypeScript获取枚举的类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/10/21/vue3%E8%8E%B7%E5%8F%96%E7%BB%84%E4%BB%B6%E5%AE%9E%E4%BE%8B/">vue3获取组件实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/10/15/vue3%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6component%E4%BD%BF%E7%94%A8/">vue3内置组件component使用语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/10/03/vue3-ts%E9%98%B2%E6%8A%96/">vue3防抖指令</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/18/es6-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/">箭头函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/12/vue-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">vue性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/08/30/%E5%89%8D%E7%AB%AF-%E5%AD%98%E5%82%A8/">前端存储数据的方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/08/21/node-%E6%9C%8D%E5%8A%A1%E6%94%AF%E6%8C%81gzip/">node服务支持gzip压缩</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/08/10/node-cli%E6%9E%84%E5%BB%BA%E8%BF%87%E7%A8%8B/">node构建cli过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/30/webpack%E8%87%AA%E5%AE%9A%E4%B9%89loader%E5%92%8Cplugin/">webpack自定义loader和plugin</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/07/webpack-%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96/">webpack 的 打包优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/24/webpack-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">webpack 的 基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/05/%E7%BD%91%E7%BB%9C-HTTP%E7%BC%93%E5%AD%98/">用Node静态服务器，掌握HTTP缓存</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/27/%E7%BD%91%E7%BB%9C-HTTP-get%E5%92%8Cpost/">HTTP的get和post的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/27/%E7%BD%91%E7%BB%9C-HTTP-referer/">HTTP请求报头中的referer</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/26/%E7%BD%91%E7%BB%9C-HTTP/">HTTP协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/22/%E7%BD%91%E7%BB%9C-DNS%E5%AF%BB%E5%9D%80%E8%BF%87%E7%A8%8B/">DNS寻址过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/20/%E7%BD%91%E7%BB%9C-TCP/">TCP协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/19/js-toLocalDateString%E5%9C%A8ie%E4%B8%8B%E5%92%8Cgg%E7%9A%84%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%90%8C/">toLocalDateString在ie下和gg的显示不同</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/19/%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B/">计算机网络分层模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/05/webpack%E7%9A%84sourceMap%E5%BA%94%E7%94%A8/">webpack 的 sourcemap 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/28/git%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E9%A6%96%E5%AD%97%E6%AF%8D%E4%B8%8D%E6%8F%90%E7%A4%BA%E6%96%87%E4%BB%B6%E5%B7%B2%E4%BF%AE%E6%94%B9/">修改文件首字母的大小写，不提示新增/删除</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/22/vue%E7%9A%84v-for%E4%B8%8Ev-ifyou%E4%BC%98%E5%85%88%E7%BA%A7/">从源码分析v-for与v-if的优先级问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/10/%E5%AF%B9Element%E7%9A%84el-form%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/">对Element的el-form的设计思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/28/vue%E4%B8%ADjsx%E5%BA%94%E7%94%A8/">vue中jsx应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/20/vue-router%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/">vue-router源码浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/04/vue%E7%9A%84mixin%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/">Vue的mixin合并策略</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/02/08/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/">Vue组件间通信的方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/01/js%E5%A6%82%E4%BD%95%E8%A2%AB%E8%A7%A3%E6%9E%90%E6%89%A7%E8%A1%8C/">js如何被解析执行</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/01/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/12/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/">事件循环机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/04/%E4%BD%9C%E7%94%A8%E5%9F%9F&%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/">作用域、作用域链和变量提升</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/02/15/%E9%97%AD%E5%8C%85/">闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/28/js%E5%B8%B8%E7%94%A8%E7%BB%A7%E6%89%BF/">js常用继承</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/20/%E8%8A%82%E6%B5%81%E5%92%8C%E9%98%B2%E6%8A%96/">防抖和节流</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/18/call%E3%80%81apply%E5%92%8Cbind/">call、apply和bind</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/15/%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">js原型和原型链</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/14/hexo/">hexo 搭建博客</a></li></ul>
+    <!-- <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script> -->
+    
+<script src="/js/require.js"></script>
+
+    
+<script src="https://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2024 John Doe
+            </div>
+            <div class="footer-right">
+                <!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >到访: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">阅读: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <!-- 
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+ -->
+
+<script src="/js/require.js"></script>
+
+
+<script src="https://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+    <!--动态线条背景-->
+<!-- <script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="https://cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script> -->
+</body>
+</html>

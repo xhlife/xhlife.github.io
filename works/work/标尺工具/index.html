@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="">
+        .test {
+            width: 800px;
+            height: 600px;
+            background-color: #ccc;
+            margin-top: 100px;
+            margin-left: 100px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test">
+
+    </div>
+    <script src="./Ruler.js"></script>
+    <script>
+        let target = document.querySelector('.test')
+        let row = Ruler.initRow({
+            width: 800,
+            height: 30,
+            // colNum: 6,
+            // startValue: 50,
+            // startGap: 100
+        })
+        row.style.position = "absolute"
+        row.style.top = "-30px"
+        target.appendChild(row)
+        let col = Ruler.initColumn({
+            colNum: 6,
+            height:600,
+            width:30
+        })
+        col.style.position = "absolute"
+        col.style.left = "-30px"
+        target.append(col)
+    </script>
+</body>
+
+</html>

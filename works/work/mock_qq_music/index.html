@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xhMusic</title>
+    <link id="test" rel="icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="./scrollBar/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <!-- 头部 -->
+    <div class="header">
+        <h1 class="logo"><a href="javascript:;">jQ音乐</a></h1>
+        <ul class="register">
+            <!-- <li>登录</li>
+            <li>设置</li> -->
+        </ul>
+    </div>
+    <!-- 中间内容 -->
+    <div class="content">
+        <div class="content_in">
+            <!-- 左边内容 -->
+            <div class="content_left">
+                <div class="content_toolbar">
+                    <span>收藏</span>
+                    <span>添加到</span>
+                    <span>下载</span>
+                    <span>删除</span>
+                    <span>清空列表</span>
+                </div>
+                <div class="content_list" data-mcs-theme='minimal-dark'>
+                    <ul>
+                        <!-- 歌曲列表头部 -->
+                        <li class="list_title">
+                            <div class="list_check">
+                                <span class="check_box"></span>
+                            </div>
+                            <div class="list_number"></div>
+                            <div class="list_name">歌曲</div>
+                            <div class="list_singer">歌手</div>
+                            <div class="list_time">时长</div>
+                        </li>
+                        <!-- 歌曲列表 -->
+                        <!-- <li class="list_music">
+                            <div class="list_check">
+                                <span class="check_box"></span>
+                            </div>
+                            <div class="list_number"></div>
+                            <div class="list_name">hahhadaf
+
+                                <div class="list_menu">
+                                    <a href="javascript:;" title="播放" class="play"></a>
+                                    <a href="javascript:;" title="添加" class="add"></a>
+                                    <a href="javascript:;" title="下载" class="download"></a>
+                                    <a href="javascript:;" title="分享" class="share"></a>
+                                </div>
+
+                            </div>
+                            <div class="list_singer">jjj</div>
+                            <div class="list_time">
+                                <span>04:18</span>
+                                <a href="javascript:;" title="删除">删除</a>
+                            </div>
+                        </li> -->
+
+                    </ul>
+                </div>
+            </div>
+            <!-- 右边内容 -->
+            <div class="content_right">
+                <div class="song_info">
+                    <a href="javascript:;" class="song_info_pic">
+                        <img src="./images/head.jpg" class="song_img" />
+                    </a>
+                    <div class="song_info_name">歌曲名称:
+                        <a href="javascript:;"><!-- 哈哈哈的 --></a>
+                    </div>
+                    <div class="song_info_singer">歌手名:
+                        <a href="javascript:;"><!-- jjj --></a>
+                    </div>
+                    <div class="song_info_ablum">专辑名:
+                        <a href="javascript:;"><!-- 哈哈哈系列 --></a>
+                    </div>
+                </div>
+                <div class="song_lyric_container">
+                    <ul class="song_lyric">
+                        <!-- <li class="cur">第一条歌词</li>
+                            <li>第二条歌词</li> -->
+                    </ul>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer_in">
+            <!-- 上一首,下一首,播放 -->
+            <a href="javascript:;" class="music_pre"></a>
+            <a href="javascript:;" class="music_play"></a>
+            <a href="javascript:;" class="music_next"></a>
+            <!-- 歌曲进度 -->
+            <div class="music_progress_info">
+                <div class="music_progress_top">
+                    <span class="music_progress_name">test / test</span>
+                    <span class="music_progress_time">00:00 / 04:18</span>
+                </div>
+                <div class="music_progress_bar">
+                    <div class="music_progress_line">
+                        <div class="music_progress_dot"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 播放模式设置 -->
+            <a href="javascript:;" class="music_mode"></a>
+            <a href="javascript:;" class="music_fav"></a>
+            <a href="javascript:;" class="music_down"></a>
+            <a href="javascript:;" class="music_comment"></a>
+            <a href="javascript:;" class="music_only"></a>
+            <!-- 音量设置 -->
+            <div class="music_voice_info">
+                <a href="javascript:;" class="music_voice_icon"></a>
+                <div class="music_voice_bar">
+                    <div class="music_voice_line">
+                        <div class="music_voice_dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 背景蒙版 -->
+    <div class="mask_bg"></div>
+    <div class="mask"></div>
+
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./scrollBar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="./js/lyric.js"></script>
+    <script src="./js/progress.js"></script>
+    <script src="./js/player.js"></script>
+    <script src="./js/getlist.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./source/musiclist.js?callback=dataJson"></script>
+
+</body>
+</html>

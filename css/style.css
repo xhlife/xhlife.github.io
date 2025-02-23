@@ -139,8 +139,8 @@ body,
 body {
   font-family: "微软雅黑", 'Microsoft JhengHei', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
   font-size: 16px;
-  background: rgba(63,63,63,0.7);
-  color: #000;
+  background: #3f3f3f;
+  color: #999;
   -webkit-overflow-scrolling: touch;
 }
 ::selection {
@@ -213,8 +213,6 @@ a {
 #container #mobile-nav {
   display: none;
   background: url("../img/bg.jpg") #515457;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
   background-size: cover;
 }
 #container #mobile-nav .overlay {
@@ -2881,8 +2879,6 @@ a.gitment-editor-footer-tip:hover {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  -webkit-background-size: 110% 110%;
-  -moz-background-size: 110% 110%;
   background-size: 110% 110%;
   border: none;
   -webkit-appearance: none;
@@ -3027,7 +3023,7 @@ a.gitment-editor-footer-tip:hover {
   color: #c8c8c8;
 }
 .article-title {
-  color: #222;
+  color: #999;
   margin-left: 0px;
   font-weight: initial;
   line-height: 35px;
@@ -3071,7 +3067,7 @@ a.gitment-editor-footer-tip:hover {
 .article-info-post.article-info {
   padding: 0;
   border: none;
-  margin: -30px 0 20px 30px;
+  margin: 0px 0 20px 30px;
 }
 .article-entry {
   line-height: 1.8em;
@@ -3827,7 +3823,7 @@ a.gitment-editor-footer-tip:hover {
   margin: 0 10px;
 }
 .article-entry li:hover {
-  background-color: rgba(63,63,63,0.3);
+  background-color: #2e2e2e;
 }
 .article-entry .highlight::before {
   content: attr(data-lang) " code";
@@ -4985,7 +4981,7 @@ pre .link_url {
   z-index: 1000;
   left: 50%;
   top: 50%;
-  margin-left: -150px;
+  margin-left: -280px;
   margin-top: -225px;
   border: 1px dotted #000;
   display: none;

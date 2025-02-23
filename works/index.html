@@ -1,42 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>demo</title>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link id="test" rel="icon" href="/img/favicon.png">
+    <title>xhWork</title>
     <style>
-       li{
-           margin-left: 50px;
-       }
+      li {
+        margin-left: 50px;
+      }
     </style>
-</head>
-<body>
-    <ul><span style="cursor: pointer;">&gt;javascript学习案例</span>
-        <li><a href="#">侧边栏广告</a></li>
-        <li><a href="#">导航吸顶</a></li>
-        <li><a href="#">倒计时</a></li>
-        <li><a href="#">点名册</a></li>
-        <li><a href="#">定时器匀速动画</a></li>
-        <li><a href="#">放大镜特效</a></li>
-        <li><a href="#">简单评论框</a></li>
-        <li><a href="#">简单日历</a></li>
-        <li><a href="#">九宫格</a></li>
-        <li><a href="#">蒙版效果</a></li>
-        <li><a href="#">瀑布流布局</a></li>
-        <li><a href="#">无限轮播</a></li>
-        <li><a href="#">旋转木马</a></li>
-        <li><a href="#">tab选项卡</a></li>
+  </head>
+  <body>
+    <ul>
+      <h3>js学习案例</h3>
+      <li><a href="#">侧边栏广告</a></li>
+      <li><a href="#">导航吸顶</a></li>
+      <li><a href="#">倒计时</a></li>
+      <li><a href="#">点名册</a></li>
+      <li><a href="#">定时器匀速动画</a></li>
+      <li><a href="#">放大镜特效</a></li>
+      <li><a href="#">简单评论框</a></li>
+      <li><a href="#">简单日历</a></li>
+      <li><a href="#">九宫格</a></li>
+      <li><a href="#">蒙版效果</a></li>
+      <li><a href="#">瀑布流布局</a></li>
+      <li><a href="#">无限轮播</a></li>
+      <li><a href="#">旋转木马</a></li>
+      <li><a href="#">tab选项卡</a></li>
+      <h3>jQuery学习案例</h3>
+      <li><a href="#">mock_qq_music</a></li>
+      <h3>工具</h3>
+      <li><a href="#">标尺工具</a></li>
+      <li><a href="#">excel转json</a></li>
+      <h3>个人项目</h3>
+      <li><a href="#">JDFinance</a></li>
+      <li><a href="#">bs</a></li>
+      <li><a href="#">canvas画板</a></li>
+      <li><a href="#">vue3-grid-layout</a></li>
+      <li><a href="#">data-v</a></li>
+      <li><a href="#">three.js服务器机房</a></li>
     </ul>
     <script>
-        window.onload = function(){
-            var ul = document.querySelector('ul')
-            ul.onclick = function(e){
-                e = e || window.event
-                var target = e.target || e.srcElement;
-                target.href = './demo/' + target.innerText + '/index.html'      
-            }
+      window.onload = function () {
+        var ul = document.querySelector("ul")
+        ul.onclick = function (e) {
+          e = e || window.event
+          var target = e.target || e.srcElement
+          target.href = "./work/" + target.innerText + "/index.html"
         }
+      }
     </script>
-</body>
+  </body>
 </html>

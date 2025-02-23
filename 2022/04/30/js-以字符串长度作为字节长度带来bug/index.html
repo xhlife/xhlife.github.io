@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>js-以字符串长度作为字节长度带来bug | xhai</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在js开发时，单纯以字符串长度作为字节长度带来bug。(很不应该，基础编码知识😂)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js-以字符串长度作为字节长度带来bug">
+<meta property="og:url" content="https://cxid.gitee.io/2022/04/30/js-%E4%BB%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6%E4%BD%9C%E4%B8%BA%E5%AD%97%E8%8A%82%E9%95%BF%E5%BA%A6%E5%B8%A6%E6%9D%A5bug/index.html">
+<meta property="og:site_name" content="xhai">
+<meta property="og:description" content="在js开发时，单纯以字符串长度作为字节长度带来bug。(很不应该，基础编码知识😂)">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-15T17:39:18.415Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="xhai" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+<!-- 回传giteement评论页网址 -->
+<!-- <script src="https://giteement.oss-cn-beijing.aliyuncs.com/oauthcallback.browser.js"></script> -->
+<script src="/js/outh.js"></script>
+  <script>
+    Oauthcallback(); 
+  </script>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">xh</a></h1>
+        </hgroup>
+
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/clock">留言打卡</a></li>
+                        
+                            <li><a href="/tags">文章标签</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/xhlife" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/DNS/" style="font-size: 10px;">DNS</a> <a href="/tags/Element-ui/" style="font-size: 10px;">Element-ui</a> <a href="/tags/Gzip/" style="font-size: 10px;">Gzip</a> <a href="/tags/HTTP/" style="font-size: 14.29px;">HTTP</a> <a href="/tags/IE/" style="font-size: 10px;">IE</a> <a href="/tags/IOS/" style="font-size: 11.43px;">IOS</a> <a href="/tags/JSCore/" style="font-size: 10px;">JSCore</a> <a href="/tags/Javascript/" style="font-size: 17.14px;">Javascript</a> <a href="/tags/Node-js/" style="font-size: 12.86px;">Node.js</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/Vue/" style="font-size: 17.14px;">Vue</a> <a href="/tags/WebCore/" style="font-size: 10px;">WebCore</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/canvas/" style="font-size: 11.43px;">canvas</a> <a href="/tags/cli/" style="font-size: 10px;">cli</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/highlight%E7%BB%84%E4%BB%B6/" style="font-size: 10px;">highlight组件</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/iframe/" style="font-size: 10px;">iframe</a> <a href="/tags/javascript/" style="font-size: 14.29px;">javascript</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/ts/" style="font-size: 18.57px;">ts</a> <a href="/tags/vite/" style="font-size: 10px;">vite</a> <a href="/tags/vue/" style="font-size: 12.86px;">vue</a> <a href="/tags/vue-cli/" style="font-size: 10px;">vue-cli</a> <a href="/tags/vue-router/" style="font-size: 11.43px;">vue-router</a> <a href="/tags/vue3/" style="font-size: 17.14px;">vue3</a> <a href="/tags/webkit/" style="font-size: 10px;">webkit</a> <a href="/tags/webpack/" style="font-size: 14.29px;">webpack</a> <a href="/tags/%E4%BC%A0%E8%BE%93%E5%B1%82%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">传输层协议</a> <a href="/tags/%E5%85%BC%E5%AE%B9%E6%80%A7%E5%A4%84%E7%90%86/" style="font-size: 10px;">兼容性处理</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">前端性能优化</a> <a href="/tags/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%8F%92%E4%BB%B6/" style="font-size: 10px;">富文本插件</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">服务器</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 15.71px;">浏览器</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">爱运动、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">xh</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">xh</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/clock">留言打卡</a></li>
+                
+                    <li><a href="/tags">文章标签</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/xhlife" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="页面布局（配合主题文档使用）-js-以字符串长度作为字节长度带来bug" class="article article-type-页面布局（配合主题文档使用）" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/04/30/js-%E4%BB%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6%E4%BD%9C%E4%B8%BA%E5%AD%97%E8%8A%82%E9%95%BF%E5%BA%A6%E5%B8%A6%E6%9D%A5bug/" class="article-date">
+      <time datetime="2022-04-29T16:00:00.000Z" itemprop="datePublished">2022-04-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      js-以字符串长度作为字节长度带来bug
+    </h1>
+  
+
+        
+          <div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-keyboard-o"></i>
+      <span class="post-meta-item-text">  字数统计: </span>
+      <span class="post-count">129字</span>
+    </span>
+  </span>
+  &nbsp; | &nbsp;
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-hourglass-half"></i>
+      <span class="post-meta-item-text">  阅读时长: </span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
+          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>js编码中  字母和数字占据一个字节，但是有些其他符号占据2,3,4个字节的也有</p>
+<p>因此，想要获取字符串的字节长度，就不能单纯的使用String.length</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">mbStringLength</span> = s =&gt;&#123;</span><br><span class="line">    <span class="keyword">var</span> totalLength = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">    <span class="keyword">var</span> charCode;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;s.<span class="property">length</span>;i++)&#123;</span><br><span class="line">          charCode = s.<span class="title function_">charCodeAt</span>(i);</span><br><span class="line">          <span class="keyword">if</span>(charCode &lt; <span class="number">0x007f</span>)&#123;</span><br><span class="line">              totalLength +=<span class="number">1</span>;</span><br><span class="line">         &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">0x0080</span>&lt;=charCode &amp;&amp; charCode &lt;= ox07ff)&#123;</span><br><span class="line">              totalLength +=<span class="number">2</span>;</span><br><span class="line">         &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">0x0800</span> &lt;= charCode &amp;&amp; charCode &lt;= <span class="number">0xffff</span>)&#123;</span><br><span class="line">              totalLength +=<span class="number">3</span>;</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">              totalLength +=<span class="number">4</span>;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">    retrun totalLength;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2022/04/30/js-%E4%BB%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6%E4%BD%9C%E4%B8%BA%E5%AD%97%E8%8A%82%E9%95%BF%E5%BA%A6%E5%B8%A6%E6%9D%A5bug/">js-以字符串长度作为字节长度带来bug</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 xh 的个人博客">xh</a></p>
+        <p><span>发布时间:</span>2022年04月30日 - 00时00分</p>
+        <p><span>最后更新:</span>2022年11月16日 - 01时39分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2022/04/30/js-%E4%BB%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6%E4%BD%9C%E4%B8%BA%E5%AD%97%E8%8A%82%E9%95%BF%E5%BA%A6%E5%B8%A6%E6%9D%A5bug/" title="js-以字符串长度作为字节长度带来bug">https://cxid.gitee.io/2022/04/30/js-%E4%BB%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6%E4%BD%9C%E4%B8%BA%E5%AD%97%E8%8A%82%E9%95%BF%E5%BA%A6%E5%B8%A6%E6%9D%A5bug/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://cxid.gitee.io/2022/04/30/js-%E4%BB%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6%E4%BD%9C%E4%B8%BA%E5%AD%97%E8%8A%82%E9%95%BF%E5%BA%A6%E5%B8%A6%E6%9D%A5bug/　　作者: xh" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2022/05/20/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%8F%92%E4%BB%B6%E8%B0%83%E7%A0%94%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          富文本插件调研记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/04/08/H5%E8%BD%AF%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E5%A4%84%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">H5软键盘弹起处理</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<!-- 
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+ -->
+
+<script src="/js/require.js"></script>
+
+
+<script src="https://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <!-- giteement评论系统 -->
+
+<div id="giteementDiv"></div>
+<link rel="stylesheet" href="https://giteement.oss-cn-beijing.aliyuncs.com/default.css">
+<script src="https://giteement.oss-cn-beijing.aliyuncs.com/giteement.browser.js"></script>
+
+<script type="text/javascript">
+  var giteement = new Giteement({
+    id: window.location.pathname,
+    owner: 'cxid',
+    repo: 'comment',
+    backcall_uri: 'https://cxid.gitee.io',
+    oauth_uri: 'https://cors-anywhere.herokuapp.com/https://gitee.com/oauth/token',
+    oauth: {
+      client_id: '8ee4f1dfd68916ea866a96bfc7d86e4d01b32e5bcd18c8d0cf06318584689723',
+      client_secret: '35dd05443654ee53bee1c899eb9dad9dd3ee3f6674beb0b9025e09fc239c877e'
+    },
+  });
+  giteement.render('giteementDiv');
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2022/05/20/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%8F%92%E4%BB%B6%E8%B0%83%E7%A0%94%E8%AE%B0%E5%BD%95/" title="上一篇: 富文本插件调研记录">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2022/04/08/H5%E8%BD%AF%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E5%A4%84%E7%90%86/" title="下一篇: H5软键盘弹起处理">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/01/07/docker%E9%83%A8%E7%BD%B2vue%E9%A1%B9%E7%9B%AE/">docker部署前端项目(以vue为例)</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/12/23/vue-router%E7%9A%84next()/">vue-router的next()</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/12/10/vue3-hightlight%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1/">vue3-highlight组件实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/11/23/vue3-%E4%BD%BF%E7%94%A8watch%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%B8%9C%E8%A5%BF-%E8%B8%A9%E5%9D%91watch%E7%9B%91%E5%90%AC%E4%B8%8D%E5%88%B0/">vue3-watch踩坑-无法监听数据变化</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/11/02/vite%E6%89%93%E5%8C%85%E4%B9%8BcssCodeSplit/">vite打包组件库时，设置cssCodeSplit不生效</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/25/vue3%E6%94%AF%E6%8C%81jsx%E8%AF%AD%E6%B3%95/">vue3支持jsx语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/09/10/%E7%BC%96%E7%A8%8B-%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E8%BD%AC%E4%B8%AD%E6%96%87/">阿拉伯数字转中文</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/09/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/">数据结构-链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%98%9F%E5%88%97/">数据结构-队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88/">数据结构-栈</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/10/%E9%95%BF%E5%88%97%E8%A1%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/">长列表性能优化方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/22/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/">浏览器渲染原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/06/25/html-iframe%E7%A6%81%E6%AD%A2%E4%B8%8B%E8%BD%BDpdf/">iframe预览pdf，禁止下载</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/06/01/vue-cli4.x%E5%A4%84%E7%90%86svg%E4%BB%A5%E5%8F%8A%E5%8E%BB%E9%99%A4%E6%B3%A8%E9%87%8A/">Vue-cli4.x的一些打包优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/05/24/node-SSE%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/">node-SSE简单实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/05/20/%E5%AF%8C%E6%96%87%E6%9C%AC%E6%8F%92%E4%BB%B6%E8%B0%83%E7%A0%94%E8%AE%B0%E5%BD%95/">富文本插件调研记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/30/js-%E4%BB%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6%E4%BD%9C%E4%B8%BA%E5%AD%97%E8%8A%82%E9%95%BF%E5%BA%A6%E5%B8%A6%E6%9D%A5bug/">js-以字符串长度作为字节长度带来bug</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/08/H5%E8%BD%AF%E9%94%AE%E7%9B%98%E5%BC%B9%E8%B5%B7%E5%A4%84%E7%90%86/">H5软键盘弹起处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/27/IOS%E4%B8%8Baudio%E7%9A%84%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%B1%9E%E6%80%A7%E6%98%AF%E6%97%A0%E6%95%88%E7%9A%84/">IOS的audio标签不允许自动播放</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/25/IOS%E5%AF%B9%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E7%9A%84bug/">IOS对时间字符串处理的bug</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/20/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A81/">前端安全-1</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/03/10/TypeScript%E7%B1%BB%E5%9E%8B%E7%BC%96%E5%86%99%E6%8F%90%E5%8D%87/">TypeScript类型编写提升</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/12/canvas%E9%9D%9E%E9%9B%B6%E7%8E%AF%E7%BB%95%E8%A7%84%E5%88%99/">canvas的非零环绕规则</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/02/10/canvas%E8%B7%AF%E5%BE%84%E4%BA%8E%E5%AD%90%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/">canvas路径与子路径</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/12/09/TypeScript%E9%85%8D%E7%BD%AE%E8%B7%AF%E5%BE%84%E9%97%B4%E5%86%99/">TypeScript配置路径简称</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/28/TypeScript-Event%E7%9A%84%E7%B1%BB%E5%9E%8B%E7%AE%80%E5%8D%95%E8%AE%B0%E5%BD%95/">TypeScript-Event类型的简单记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/11/20/TypeScript%E8%8E%B7%E5%8F%96%E6%9E%9A%E4%B8%BE%E7%9A%84%E7%B1%BB%E5%9E%8B/">TypeScript获取枚举的类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/10/21/vue3%E8%8E%B7%E5%8F%96%E7%BB%84%E4%BB%B6%E5%AE%9E%E4%BE%8B/">vue3获取组件实例</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/10/15/vue3%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6component%E4%BD%BF%E7%94%A8/">vue3内置组件component使用语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/10/03/vue3-ts%E9%98%B2%E6%8A%96/">vue3防抖指令</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/18/es6-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/">箭头函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/12/vue-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">vue性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/08/30/%E5%89%8D%E7%AB%AF-%E5%AD%98%E5%82%A8/">前端存储数据的方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/08/21/node-%E6%9C%8D%E5%8A%A1%E6%94%AF%E6%8C%81gzip/">node服务支持gzip压缩</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/08/10/node-cli%E6%9E%84%E5%BB%BA%E8%BF%87%E7%A8%8B/">node构建cli过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/30/webpack%E8%87%AA%E5%AE%9A%E4%B9%89loader%E5%92%8Cplugin/">webpack自定义loader和plugin</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/07/webpack-%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96/">webpack 的 打包优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/24/webpack-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">webpack 的 基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/06/05/%E7%BD%91%E7%BB%9C-HTTP%E7%BC%93%E5%AD%98/">用Node静态服务器，掌握HTTP缓存</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/27/%E7%BD%91%E7%BB%9C-HTTP-get%E5%92%8Cpost/">HTTP的get和post的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/27/%E7%BD%91%E7%BB%9C-HTTP-referer/">HTTP请求报头中的referer</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/26/%E7%BD%91%E7%BB%9C-HTTP/">HTTP协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/22/%E7%BD%91%E7%BB%9C-DNS%E5%AF%BB%E5%9D%80%E8%BF%87%E7%A8%8B/">DNS寻址过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/20/%E7%BD%91%E7%BB%9C-TCP/">TCP协议</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/19/js-toLocalDateString%E5%9C%A8ie%E4%B8%8B%E5%92%8Cgg%E7%9A%84%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%90%8C/">toLocalDateString在ie下和gg的显示不同</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/19/%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B/">计算机网络分层模型</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/05/05/webpack%E7%9A%84sourceMap%E5%BA%94%E7%94%A8/">webpack 的 sourcemap 应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/28/git%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E9%A6%96%E5%AD%97%E6%AF%8D%E4%B8%8D%E6%8F%90%E7%A4%BA%E6%96%87%E4%BB%B6%E5%B7%B2%E4%BF%AE%E6%94%B9/">修改文件首字母的大小写，不提示新增/删除</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/22/vue%E7%9A%84v-for%E4%B8%8Ev-ifyou%E4%BC%98%E5%85%88%E7%BA%A7/">从源码分析v-for与v-if的优先级问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/10/%E5%AF%B9Element%E7%9A%84el-form%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/">对Element的el-form的设计思考</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/28/vue%E4%B8%ADjsx%E5%BA%94%E7%94%A8/">vue中jsx应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/20/vue-router%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/">vue-router源码浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/04/vue%E7%9A%84mixin%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/">Vue的mixin合并策略</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/02/08/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/">Vue组件间通信的方式总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/01/js%E5%A6%82%E4%BD%95%E8%A2%AB%E8%A7%A3%E6%9E%90%E6%89%A7%E8%A1%8C/">js如何被解析执行</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/01/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">垃圾回收机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/12/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/">事件循环机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/04/%E4%BD%9C%E7%94%A8%E5%9F%9F&%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/">作用域、作用域链和变量提升</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/02/15/%E9%97%AD%E5%8C%85/">闭包</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/28/js%E5%B8%B8%E7%94%A8%E7%BB%A7%E6%89%BF/">js常用继承</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/20/%E8%8A%82%E6%B5%81%E5%92%8C%E9%98%B2%E6%8A%96/">防抖和节流</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/18/call%E3%80%81apply%E5%92%8Cbind/">call、apply和bind</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/01/15/%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">js原型和原型链</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/14/hexo/">hexo 搭建博客</a></li></ul>
+    <!-- <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script> -->
+    
+<script src="/js/require.js"></script>
+
+    
+<script src="https://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2024 John Doe
+            </div>
+            <div class="footer-right">
+                <!-- <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >到访: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">阅读: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <!-- 
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+ -->
+
+<script src="/js/require.js"></script>
+
+
+<script src="https://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+    <!--动态线条背景-->
+<!-- <script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="https://cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script> -->
+</body>
+</html>
